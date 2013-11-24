@@ -44,7 +44,7 @@ BUILD_PRODUCT_DIR ?= $(BUILD_DIR)product/
 
 #------------------------------------------------------------------------------- CONFIG
 
--include config.mk
+-include default_config.mk
 
 
 #------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
