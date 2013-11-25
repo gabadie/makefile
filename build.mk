@@ -1,8 +1,11 @@
 
 #------------------------------------------------------------------------------- GENERAL PURPOSE
 
+.SECONDEXPANSION:
+
 MK_THIS := $(lastword $(MAKEFILE_LIST))
 MK_DIR := $(dir $(MK_THIS))
+
 GENERAL_VERSION = November 2013
 
 
@@ -27,6 +30,13 @@ CMD_MKDIR_ALL = $(CMD_MKDIR) -p
 CMD_RM = $(CMD_PREFIX)rm
 
 
+#------------------------------------------------------------------------------- UPDATE COMMAND
+
+.PHONY: update
+update: $$(GLOBAL_UPDATE_TARGETS)
+	$(CMD_ECHO) "# build finished"
+
+
 #------------------------------------------------------------------------------- PROJECT DIR
 
 PROJECT_DIR ?= ./
@@ -47,15 +57,11 @@ BUILD_PRODUCT_DIR ?= $(BUILD_DIR)product/
 
 #------------------------------------------------------------------------------- COMMANDS
 
-.SECONDEXPANSION:
-.PHONY: update clean full
-
-update: $$(GLOBAL_UPDATE_TARGETS)
-	$(CMD_ECHO) "# build finished"
-
+.PHONY: clean
 clean:
 	$(CMD_RM) -rf $(BUILD_DIR)
 
+.PHONY: full
 full: clean update
 
 .PHONY: set
