@@ -19,5 +19,8 @@ Guillaume Abadie's makefile solution
         Force compilation from scratch
 
     > make set
-        Saves modified variable into the project
+        Saves modified variable into the ./mkrepo
+
+    > make params
+        Show all parameters in .mkrepo
 
