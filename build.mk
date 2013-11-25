@@ -13,7 +13,18 @@ rfindall=$(call rwildcard,./,*.$1)
 
 #------------------------------------------------------------------------------- GLOBAL VARS
 
-UPDATE_TARGETS =
+GLOBAL_UPDATE_TARGETS =
+
+
+#------------------------------------------------------------------------------- COMMANDS SYMBOLS
+
+CMD_PREFIX ?= @
+
+CMD_CP = $(CMD_PREFIX)cp
+CMD_ECHO = @echo
+CMD_MKDIR = $(CMD_PREFIX)mkdir
+CMD_MKDIR_ALL = $(CMD_MKDIR) -p
+CMD_RM = $(CMD_PREFIX)rm
 
 
 #------------------------------------------------------------------------------- COMMANDS
@@ -50,17 +61,6 @@ BUILD_PRODUCT_DIR ?= $(BUILD_DIR)product/
 #------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
 
 include $(call rwildcard,$(MK_DIR),post_config.*.ext.mk)
-
-
-#------------------------------------------------------------------------------- COMMANDS
-
-CMD_PREFIX ?= @
-
-CMD_CP = $(CMD_PREFIX)cp
-CMD_ECHO = @echo
-CMD_MKDIR = $(CMD_PREFIX)mkdir
-CMD_MKDIR_ALL = $(CMD_MKDIR) -p
-CMD_RM = $(CMD_PREFIX)rm
 
 
 #------------------------------------------------------------------------------- INCLUDES
