@@ -34,7 +34,7 @@ CMD_RM = $(CMD_PREFIX)rm
 
 .PHONY: update
 update: $$(GLOBAL_UPDATE_TARGETS)
-	$(CMD_ECHO) "# build finished"
+	$(CMD_ECHO) "# builds update finished"
 
 
 #------------------------------------------------------------------------------- PROJECT DIR
@@ -63,6 +63,7 @@ clean:
 
 .PHONY: full
 full: clean update
+	$(CMD_ECHO) "# builds from scratsh finished"
 
 
 #------------------------------------------------------------------------------- CANDY
