@@ -28,15 +28,12 @@ mkrepo_fetch_param = $(shell cat "$(MK_REPOSITORY_DIR)$1" 2> /dev/null)
 #
 mkrepo_load_param = $($(eval MK_REPOSITORY_PARAMS += $1)$(eval TMP_VALUE := $(call mkrepo_fetch_param,$1))$(if $(TMP_VALUE),$(eval $1 ?= $(TMP_VALUE)),$(eval $1 := $2)))
 
-#
-# @infos: return shell code to save a parameter
-#
-# @uses:
-#   $(call mkrepo_save_param,PARAMETER_NAME)
-#
-# @param <PARAMETER_NAME>: parameter's name
-#
-mkrepo_save_param = $(CMD_ECHO) "$($1)" > "$(MK_REPOSITORY_DIR)$1"
+.PHONY: set
+set:
+	$(CMD_MKDIR_ALL) $(MK_REPOSITORY_DIR)
+	@$(foreach PARAM,$(MK_REPOSITORY_PARAMS),\
+	    echo "$($(PARAM))" > "$(MK_REPOSITORY_DIR)$(PARAM)";\
+	)
 
 .PHONY: params
 params:
