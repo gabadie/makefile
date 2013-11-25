@@ -61,7 +61,7 @@ full: clean update
 .PHONY: set
 set:
 	$(CMD_MKDIR_ALL) $(MK_REPOSITORY_DIR)
-	$(CMD_ECHO) $(config) > $(MK_REPOSITORY_DIR)config
+	$(call mkrepo_save_param,config)
 
 
 #------------------------------------------------------------------------------- CANDY
