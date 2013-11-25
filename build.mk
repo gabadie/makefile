@@ -7,13 +7,7 @@ MK_DIR := $(dir $(MK_THIS))
 
 #------------------------------------------------------------------------------- FUNCTIONS
 
-rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
-rfindall=$(call rwildcard,./,*.$1)
-
-url_parent_dir=$(dir $(patsubst %/,%, $1))
-
-private_url_find_parent=$(if $1,$(call private_url_find_parent,$(call url_parent_dir,$1),$2)$(wildcard $1$2))
-url_find_parent=$(call private_url_find_parent,$(abspath $1)/,$2)
+include $(MK_DIR)functions.mk
 
 
 #------------------------------------------------------------------------------- GLOBAL VARS
