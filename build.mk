@@ -18,13 +18,20 @@ GLOBAL_UPDATE_TARGETS =
 
 #------------------------------------------------------------------------------- COMMANDS SYMBOLS
 
-CMD_PREFIX ?= @
+CMD_PREFIX ?=
 
 CMD_CP = $(CMD_PREFIX)cp
 CMD_ECHO = @echo
 CMD_MKDIR = $(CMD_PREFIX)mkdir
 CMD_MKDIR_ALL = $(CMD_MKDIR) -p
 CMD_RM = $(CMD_PREFIX)rm
+
+
+#------------------------------------------------------------------------------- PRE-CONFIG INIT
+
+PROJECT_DIR ?= ./
+BUILD_DIR ?= $(PROJECT_DIR)build/
+BUILD_PRODUCT_DIR ?= $(BUILD_DIR)product/
 
 
 #------------------------------------------------------------------------------- COMMANDS
@@ -46,13 +53,6 @@ full: clean update
 include $(call rwildcard,$(MK_DIR),pre_config.*.ext.mk)
 
 
-#------------------------------------------------------------------------------- PRE-CONFIG INIT
-
-PROJECT_DIR ?= ./
-BUILD_DIR ?= $(PROJECT_DIR)build/
-BUILD_PRODUCT_DIR ?= $(BUILD_DIR)product/
-
-
 #------------------------------------------------------------------------------- CONFIG
 
 -include default_config.mk
@@ -61,9 +61,4 @@ BUILD_PRODUCT_DIR ?= $(BUILD_DIR)product/
 #------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
 
 include $(call rwildcard,$(MK_DIR),post_config.*.ext.mk)
-
-
-#------------------------------------------------------------------------------- INCLUDES
-
--include $(call rwildcard,./,*.d)
 

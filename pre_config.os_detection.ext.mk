@@ -13,5 +13,3 @@ else
     OS_NAME :=$(shell uname -s)
 endif
 
-BUILD_DIR = build-$(OS_NAME)/
-
