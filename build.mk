@@ -46,7 +46,7 @@ PROJECT_DIR ?= ./
 
 include $(MK_DIR)repository.mk
 
-$(call mkrepo_load_param,config,default_config)
+$(call mkrepo_load_param,config,default)
 
 
 #------------------------------------------------------------------------------- COMMANDS
