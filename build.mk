@@ -68,6 +68,7 @@ clean:
 
 full: clean update
 
+.PHONY: set
 set:
 	$(CMD_MKDIR_ALL) $(MK_REPOSITORY_DIR)
 	$(CMD_ECHO) $(MK_SELECTED_CONFIG) > $(MK_REPOSITORY_DIR)selected_config
