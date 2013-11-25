@@ -34,24 +34,14 @@ PROJECT_DIR ?= ./
 
 #------------------------------------------------------------------------------- MK REPOSITORY
 
-MK_REPOSITORY_DIR = $(lastword $(call url_find_parent,$(PROJECT_DIR),.mkrepo/))
+include $(MK_DIR)repository.mk
 
-MK_SELECTED_CONFIG = default_config
-
-ifeq ($(MK_REPOSITORY_DIR),)
-    MK_REPOSITORY_DIR = $(PROJECT_DIR).mkrepo/
-else
-    MK_SELECTED_CONFIG = $(shell cat "$(MK_REPOSITORY_DIR)selected_config")
-endif
-
-ifdef config
-    MK_SELECTED_CONFIG = $(config)
-endif
+$(call mkrepo_load_param,config,default_config)
 
 
 #------------------------------------------------------------------------------- COMMANDS
 
-BUILD_DIR ?= $(PROJECT_DIR)build-$(MK_SELECTED_CONFIG)/
+BUILD_DIR ?= $(PROJECT_DIR)build-$(config)/
 BUILD_PRODUCT_DIR ?= $(BUILD_DIR)product/
 
 
@@ -71,7 +61,7 @@ full: clean update
 .PHONY: set
 set:
 	$(CMD_MKDIR_ALL) $(MK_REPOSITORY_DIR)
-	$(CMD_ECHO) $(MK_SELECTED_CONFIG) > $(MK_REPOSITORY_DIR)selected_config
+	$(CMD_ECHO) $(config) > $(MK_REPOSITORY_DIR)config
 
 
 #------------------------------------------------------------------------------- CANDY
@@ -90,7 +80,7 @@ include $(call rwildcard,$(MK_DIR),pre_config.*.ext.mk)
 
 #------------------------------------------------------------------------------- CONFIG
 
-MK_CONFIG_PATH = $(MK_SELECTED_CONFIG).mk
+MK_CONFIG_PATH = $(config).mk
 
 ifeq ($(wildcard $(MK_CONFIG_PATH)),)
     $(error $(MK_CONFIG_PATH) does not exist)
