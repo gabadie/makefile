@@ -3,6 +3,7 @@
 
 MK_THIS := $(lastword $(MAKEFILE_LIST))
 MK_DIR := $(dir $(MK_THIS))
+GENERAL_VERSION = November 2013
 
 
 #------------------------------------------------------------------------------- FUNCTIONS
@@ -70,6 +71,15 @@ full: clean update
 set:
 	$(CMD_MKDIR_ALL) $(MK_REPOSITORY_DIR)
 	$(CMD_ECHO) $(MK_SELECTED_CONFIG) > $(MK_REPOSITORY_DIR)selected_config
+
+
+#------------------------------------------------------------------------------- CANDY
+
+.PHONY: candy
+candy:
+	$(CMD_ECHO) "# make candy 🍬 "
+	$(CMD_ECHO) "# version: $(GENERAL_VERSION)"
+	$(CMD_ECHO) "# developed by Guillaume Abadie"
 
 
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
