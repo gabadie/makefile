@@ -1,18 +1,7 @@
 
-#------------------------------------------------------------------------------- GENERAL PURPOSE
-
-MK_THIS := $(lastword $(MAKEFILE_LIST))
-MK_DIR := $(dir $(MK_THIS))
-
-
-#------------------------------------------------------------------------------- FUNCTIONS
-
-include $(MK_DIR)functions.mk
-
-
 #------------------------------------------------------------------------------- LIST ALL MAKEFILES
 
-SUB_MAKEFILES = $(dir $(call rwildcard,./,*/makefile))
+SUB_MAKEFILES = $(dir $(wildcard */makefile))
 
 MAKECMDGOALS ?= update
 
