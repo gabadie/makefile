@@ -13,6 +13,8 @@ MAKECMDGOALS ?= update
 
 $(MAKECMDGOALS):
 	@$(foreach MAKEFILE_DIR,$(SUB_MAKEFILES), \
+            echo "# makefile <$(MAKEFILE_DIR)/makefile>" ; \
             make -C "$(MAKEFILE_DIR)" $@ $(MAKEFLAGS) ; \
+            echo "#" ; \
         )
 

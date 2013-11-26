@@ -35,7 +35,6 @@ CMD_RM = $(CMD_PREFIX)rm
 .PHONY: update
 update: $$(GLOBAL_UPDATE_TARGETS)
 	$(CMD_ECHO) "# builds update finished"
-	$(CMD_ECHO) "#"
 
 
 #------------------------------------------------------------------------------- PROJECT DIR
@@ -65,7 +64,6 @@ clean:
 .PHONY: full
 full: clean $$(GLOBAL_UPDATE_TARGETS)
 	$(CMD_ECHO) "# builds from scratsh finished"
-	$(CMD_ECHO) "#"
 
 
 #------------------------------------------------------------------------------- CANDY
@@ -75,7 +73,6 @@ candy:
 	$(CMD_ECHO) "# make candy 🍬 "
 	$(CMD_ECHO) "# version: $(GENERAL_VERSION)"
 	$(CMD_ECHO) "# developed by Guillaume Abadie"
-	$(CMD_ECHO) "#"
 
 
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
