@@ -13,7 +13,7 @@
 # @example 1:
 #   - default_config.mk:
 #       PROJECT_NAME = foo_bar
-#       GLOBAL_C_CPP_FLAGS = -Werror
+#       GLOBAL_C_FLAGS = -Werror
 #       GLOBAL_LINK_FLAGS = -lm
 #
 #       include ../mk/config_templatess/bin_application.mk
@@ -29,6 +29,9 @@ PROJECT_TARGET ?= $(BUILD_PRODUCT_DIR)$(PROJECT_NAME)
 EXEC_TARGETS += $(PROJECT_TARGET)
 
 $(PROJECT_TARGET): $$(call o_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s))
+$(PROJECT_TARGET): C_FLAGS = $(GLOBAL_C_FLAGS)
+$(PROJECT_TARGET): CPP_FLAGS = $(GLOBAL_C_FLAGS)
+$(PROJECT_TARGET): S_FLAGS = $(GLOBAL_S_FLAGS)
 $(PROJECT_TARGET): LINK_EXEC_FLAGS = $(GLOBAL_LINK_FLAGS)
 
 .PHONY: run
