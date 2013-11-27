@@ -8,14 +8,13 @@
 # @example:
 #   $(call product_create,EXEC,hello_hex)
 #
-product_create = $2 $(\
-    $(eval PRODUCT_$2_TYPE := $1) \
-    $(eval PRODUCT_$2_TARGET := $(BUILD_PRODUCT_DIR)$2$($1_EXTENSION)) \
-    $(eval PRODUCT_$2_PROJECT_DIR := $(PROJECT_DIR)) \
-    $(eval PRODUCT_$2_DEPENDENCIES :=) \
-    $(eval $1_PRODUCTS += $2) \
+product_create = $(strip $2) \
+    $(eval PRODUCT_$(strip $2)_TYPE :=$(strip $1)) \
+    $(eval PRODUCT_$(strip $2)_TARGET = $(BUILD_PRODUCT_DIR)$(strip $2)$($(strip $1)_EXTENSION)) \
+    $(eval PRODUCT_$(strip $2)_PROJECT_DIR := $(PROJECT_DIR)) \
+    $(eval PRODUCT_$(strip $2)_DEPENDENCIES :=) \
+    $(eval $(strip $1)_PRODUCTS += $2) \
     $(eval PROJECT_PRODUCTS += $2) \
-)
 
 #
 # @infos: fetches an external product
@@ -26,12 +25,12 @@ product_create = $2 $(\
 # @example:
 #   $(call product_external,../hello_project/,lib_hello,config=default)
 #
-product_external = $2 $(\
-    $(eval PRODUCT_$2_TYPE := EXTERNAL) \
-    $(eval PRODUCT_$2_TARGET := $(call project_products,$1,$3,$2)) \
-    $(eval PRODUCT_$2_PROJECT_DIR := $1) \
-    $(eval PRODUCT_$2_DEPENDENCIES :=) \
-    $(eval PRODUCT_$2_OPTIONS := $3) \
+product_external = $(strip $2) $(\
+    $(eval PRODUCT_$(strip $2)_TYPE :=EXTERNAL) \
+    $(eval PRODUCT_$(strip $2)_TARGET := $(call project_products,$(strip $1),$(strip $3),$(strip $2))) \
+    $(eval PRODUCT_$(strip $2)_PROJECT_DIR := $1) \
+    $(eval PRODUCT_$(strip $2)_DEPENDENCIES :=) \
+    $(eval PRODUCT_$(strip $2)_OPTIONS := $3) \
     $(eval EXTERNAL_PRODUCTS += $2) \
 )
 
@@ -44,7 +43,7 @@ product_external = $2 $(\
 # @example:
 #   $(call product_target,hello_hex)
 #
-product_target = $(PRODUCT_$1_TARGET)
+product_target = $(PRODUCT_$(strip $1)_TARGET)
 
 #
 # @infos: sets a product's param
@@ -55,7 +54,7 @@ product_target = $(PRODUCT_$1_TARGET)
 # @example:
 #   $(call product_set_param,hello_hex,C_FLAGS,-Werror)
 #
-product_set_param = $(eval PRODUCT_$1_PARAM_$2 = $3)
+product_set_param = $(eval PRODUCT_$(strip $1)_PARAM_$(strip $2) = $3)
 
 #
 # @infos: adds a product's param
@@ -66,7 +65,7 @@ product_set_param = $(eval PRODUCT_$1_PARAM_$2 = $3)
 # @example:
 #   $(call product_append_param,hello_hex,C_FLAGS,-Werror)
 #
-product_append_param = $(eval PRODUCT_$1_PARAM_$2 += $3)
+product_append_param = $(eval PRODUCT_$(strip $1)_PARAM_$(strip $2) += $3)
 
 #
 # @infos: appends a product's param
@@ -77,7 +76,7 @@ product_append_param = $(eval PRODUCT_$1_PARAM_$2 += $3)
 # @example:
 #   $(call product_param,hello_hex,C_FLAGS)
 #
-product_param = $(PRODUCT_$1_PARAM_$2)
+product_param = $(PRODUCT_$(strip $1)_PARAM_$(strip $2))
 
 #
 # @infos: adds product dependencies
@@ -88,7 +87,7 @@ product_param = $(PRODUCT_$1_PARAM_$2)
 # @example:
 #   $(call product_add_dependencies,hello_hex,main.c)
 #
-product_add_dependencies = $(eval PRODUCT_$1_DEPENDENCIES += $2)
+product_add_dependencies = $(eval PRODUCT_$(strip $1)_DEPENDENCIES += $2)
 
 #
 # @infos: gets a product's dependencies
@@ -99,7 +98,7 @@ product_add_dependencies = $(eval PRODUCT_$1_DEPENDENCIES += $2)
 # @example:
 #   $(call product_dependencies,hello_hex)
 #
-product_dependencies = $(PRODUCT_$1_DEPENDENCIES)
+product_dependencies = $(PRODUCT_$(strip $1)_DEPENDENCIES)
 
 #
 # @infos: makes a project public
