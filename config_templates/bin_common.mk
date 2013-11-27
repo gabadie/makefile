@@ -31,15 +31,12 @@
 
 PROJECT_NAME ?= $(notdir $(shell pwd | sed 's/ /\\/g'))
 PROJECT_TYPE ?= EXEC
-PROJECT_TARGET ?= $(BUILD_PRODUCT_DIR)$(PROJECT_NAME)$($(PROJECT_TYPE)_EXTENSION)
 
-$(PROJECT_TYPE)_TARGETS += $(PROJECT_TARGET)
+PROJECT_PRODUCT := $(call product_create,$(PROJECT_TYPE),$(PROJECT_NAME))
+
+$(call product_public,$(PROJECT_PRODUCT))
 
 $(PROJECT_TARGET): $$(call o_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s))
-$(PROJECT_TARGET): C_FLAGS = $(GLOBAL_C_FLAGS)
-$(PROJECT_TARGET): CPP_FLAGS = $(GLOBAL_CPP_FLAGS)
-$(PROJECT_TARGET): S_FLAGS = $(GLOBAL_S_FLAGS)
-$(PROJECT_TARGET): LINK_EXEC_FLAGS = $(GLOBAL_LINK_FLAGS)
 
 .PHONY: run
 
