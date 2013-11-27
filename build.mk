@@ -60,17 +60,6 @@ BUILD_DIR ?= $(PROJECT_DIR)build-$(config)/
 BUILD_PRODUCT_DIR ?= $(BUILD_DIR)product/
 
 
-#------------------------------------------------------------------------------- COMMANDS
-
-.PHONY: clean
-clean:
-	$(CMD_RM) -rf $(BUILD_DIR)
-
-.PHONY: full
-full: clean $$(GLOBAL_UPDATE_TARGETS)
-	$(CMD_ECHO) "# builds from scratsh finished"
-
-
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
 
 include $(call extension_manual_entry,main_config_pre)
