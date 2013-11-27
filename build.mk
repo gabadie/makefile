@@ -14,6 +14,11 @@ GENERAL_VERSION = November 2013
 include $(MK_DIR)functions.mk
 
 
+#------------------------------------------------------------------------------- EXTENSIONS MANAGER
+
+include $(MK_DIR)extension.mk
+
+
 #------------------------------------------------------------------------------- GLOBAL VARS
 
 GLOBAL_UPDATE_TARGETS =
@@ -78,6 +83,7 @@ candy:
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
 
 include $(call rwildcard,$(MK_DIR),pre_config.*.ext.mk)
+include $(call extension_manual_entry,main_config_pre)
 
 
 #------------------------------------------------------------------------------- CONFIG
@@ -94,4 +100,5 @@ endif
 #------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
 
 include $(call rwildcard,$(MK_DIR),post_config.*.ext.mk)
+include $(call extension_manual_entry,main_config_post)
 
