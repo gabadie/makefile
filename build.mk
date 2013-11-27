@@ -23,6 +23,9 @@ include $(MK_DIR)extension.mk
 
 GLOBAL_UPDATE_TARGETS =
 
+GLOBAL_PRODUCTS = $(filter $(BUILD_PRODUCT_DIR)%,$(GLOBAL_UPDATE_TARGETS))
+GLOBAL_PRODUCTS_SELECTED = $(if $(products),$(filter $(addsuffix .%,$(addprefix $(BUILD_PRODUCT_DIR),$(products))),$(GLOBAL_PRODUCTS)),$(GLOBAL_PRODUCTS))
+
 
 #------------------------------------------------------------------------------- COMMANDS SYMBOLS
 
@@ -33,6 +36,8 @@ CMD_ECHO = @echo
 CMD_MKDIR = $(CMD_PREFIX)mkdir
 CMD_MKDIR_ALL = $(CMD_MKDIR) -p
 CMD_RM = $(CMD_PREFIX)rm
+
+PLUMBING_PREFIX := plumbing_
 
 
 #------------------------------------------------------------------------------- UPDATE COMMAND
@@ -79,4 +84,6 @@ endif
 #------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
 
 include $(call extension_manual_entry,main_config_post)
+
+include $(call extension_manual_entry,build_end)
 
