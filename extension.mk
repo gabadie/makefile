@@ -1,5 +1,5 @@
 
-GLOBAL_EXTENSION_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+GLOBAL_EXTENSION_DIR := $(dir $(lastword $(MAKEFILE_LIST)))extensions/
 
 #
 # @infos: manually define an extension entry point
