@@ -71,15 +71,6 @@ full: clean $$(GLOBAL_UPDATE_TARGETS)
 	$(CMD_ECHO) "# builds from scratsh finished"
 
 
-#------------------------------------------------------------------------------- CANDY
-
-.PHONY: candy
-candy:
-	$(CMD_ECHO) "# make candy 🍬 "
-	$(CMD_ECHO) "# version: $(GENERAL_VERSION)"
-	$(CMD_ECHO) "# developed by Guillaume Abadie"
-
-
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
 
 include $(call extension_manual_entry,main_config_pre)
