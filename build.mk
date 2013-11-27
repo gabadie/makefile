@@ -82,7 +82,6 @@ candy:
 
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
 
-include $(call rwildcard,$(MK_DIR),pre_config.*.ext.mk)
 include $(call extension_manual_entry,main_config_pre)
 
 
@@ -99,6 +98,5 @@ endif
 
 #------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
 
-include $(call rwildcard,$(MK_DIR),post_config.*.ext.mk)
 include $(call extension_manual_entry,main_config_post)
 
