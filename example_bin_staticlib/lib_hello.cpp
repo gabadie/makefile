@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 
-#include "main.h"
+#include "lib_hello.h"
 
 
 void

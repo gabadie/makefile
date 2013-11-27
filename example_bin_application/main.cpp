@@ -1,11 +1,13 @@
 
 #include <stdio.h>
+#include <lib_hello.h>
 
 
 int
 main()
 {
-    printf("hello world!\n");
+    lib_hello();
+    printf("hello world! (local)\n");
 
     return 0;
 }

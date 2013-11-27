@@ -1,7 +1,7 @@
 
 PROJECT_TYPE = STATICLIB
 
-$(call libheader_add,main.h)
+$(call libheader_add,lib_hello.h)
 
 include ../config_templates/bin_common.mk
 
