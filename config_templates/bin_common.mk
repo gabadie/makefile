@@ -29,23 +29,19 @@
 #       update and then launch the application
 #
 
+CMD_PREFIX =
+
 PROJECT_NAME ?= $(notdir $(shell pwd | sed 's/ /\\/g'))
 PROJECT_TYPE ?= EXEC
 
-PROJECT_PRODUCT := $(call product_create,$(PROJECT_TYPE),$(PROJECT_NAME))
+PRODUCT_NAME := $(call product_create,$(PROJECT_TYPE),$(PROJECT_NAME))
+PRODUCT_TARGET := $(call product_target,$(PRODUCT_NAME))
 
-$(call product_public,$(PROJECT_PRODUCT))
-$(call product_set_param,$(PROJECT_PRODUCT),C_FLAGS,$(GLOBAL_C_FLAGS))
-$(call product_set_param,$(PROJECT_PRODUCT),CPP_FLAGS,$(GLOBAL_CPP_FLAGS))
-$(call product_set_param,$(PROJECT_PRODUCT),S_FLAGS,$(GLOBAL_S_FLAGS))
-$(call product_set_param,$(PROJECT_PRODUCT),LINK_EXEC_FLAGS,$(GLOBAL_LINK_FLAGS))
-$(call product_add_dependencies,$(PROJECT_PRODUCT),$(call o_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s)))
-
-$(info $(call product_target,$(PROJECT_PRODUCT)))
+$(PRODUCT_TARGET): C_FLAGS = $(GLOBAL_C_FLAGS)
+$(PRODUCT_TARGET): $(call o_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s))
 
 .PHONY: run
-
-run: $(call product_target,$(PROJECT_PRODUCT))
+run: $(PRODUCT_TARGET)
 	$(CMD_ECHO) "# running application <$<>"
 	$(CMD_PREFIX)./$<
 
