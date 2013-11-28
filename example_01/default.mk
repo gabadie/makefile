@@ -9,5 +9,5 @@ else
 endif
 
 $(EXAMPLE_TARGET): $$(call o_files,$(call rfindall,cpp))
-$(EXAMPLE_TARGET): LINK_BINEXEC_FLAGS = $(OPENCL_LINK_FLAG)
+$(EXAMPLE_TARGET): BINEXEC_FLAGS = $(OPENCL_LINK_FLAG)
 
