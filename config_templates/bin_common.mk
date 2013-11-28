@@ -29,8 +29,6 @@
 #       update and then launch the application
 #
 
-CMD_PREFIX =
-
 PROJECT_NAME ?= $(notdir $(shell pwd | sed 's/ /\\/g'))
 PROJECT_TYPE ?= EXEC
 
