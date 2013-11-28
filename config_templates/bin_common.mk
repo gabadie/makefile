@@ -38,6 +38,9 @@ PRODUCT_NAME := $(call product_create,$(PROJECT_TYPE),$(PROJECT_NAME))
 PRODUCT_TARGET := $(call product_target,$(PRODUCT_NAME))
 
 $(PRODUCT_TARGET): C_FLAGS = $(GLOBAL_C_FLAGS)
+$(PRODUCT_TARGET): CPP_FLAGS = $(GLOBAL_CPP_FLAGS)
+$(PRODUCT_TARGET): S_FLAGS = $(GLOBAL_S_FLAGS)
+$(PRODUCT_TARGET): LINK_EXEC_FLAGS = $(GLOBAL_LINK_FLAGS)
 $(PRODUCT_TARGET): $(call o_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s))
 
 .PHONY: run
