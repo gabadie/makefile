@@ -1,5 +1,5 @@
 
-PROJECT_TYPE = STATICLIB
+PROJECT_TYPE = BINLIBSTATIC
 
 $(call libheader_add,lib_hello.h)
 
