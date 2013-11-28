@@ -40,6 +40,7 @@ $(PRODUCT_TARGET): CPP_FLAGS = $(GLOBAL_CPP_FLAGS)
 $(PRODUCT_TARGET): S_FLAGS = $(GLOBAL_S_FLAGS)
 $(PRODUCT_TARGET): LINK_EXEC_FLAGS = $(GLOBAL_LINK_FLAGS)
 $(PRODUCT_TARGET): $(call o_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s))
+$(PRODUCT_TARGET): $(GLOBAL_DEPENDENCIES)
 
 .PHONY: run
 run: $(PRODUCT_TARGET)

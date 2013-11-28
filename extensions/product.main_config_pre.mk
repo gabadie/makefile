@@ -15,21 +15,6 @@ product_create = $2 \
     $(eval PROJECT_PRODUCTS += $2) \
 
 #
-# @infos: fetches an external product
-#
-# @uses:
-#   $(call product_external,$(EXTERNAL_PROJECT_DIR),$(PRODUCT_NAME),$(OPTIONS))
-#
-# @example:
-#   $(call product_external,../hello_project/,lib_hello,config=default)
-#
-product_external = $(strip $2) $(\
-    $(eval PRODUCT_$(strip $2)_TYPE :=EXTERNAL) \
-    $(eval PRODUCT_$(strip $2)_TARGET := $(call project_products,$(strip $1),$(strip $3),$(strip $2))) \
-    $(eval EXTERNAL_PRODUCTS += $2) \
-)
-
-#
 # @infos: gets a product's target
 #
 # @uses:

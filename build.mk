@@ -31,6 +31,7 @@ CMD_PREFIX ?= @
 
 CMD_CP = $(CMD_PREFIX)cp
 CMD_ECHO = @echo
+CMD_MESSAGE = $(CMD_ECHO) "\#" $(message_indent)
 CMD_MKDIR = $(CMD_PREFIX)mkdir
 CMD_MKDIR_ALL = $(CMD_MKDIR) -p
 CMD_RM = $(CMD_PREFIX)rm
@@ -42,7 +43,7 @@ PLUMBING_PREFIX := plumbing_
 
 .PHONY: update
 update: $$(PROJECT_TARGETS)
-	$(CMD_ECHO) "# builds update finished"
+	$(CMD_MESSAGE) "builds update finished"
 
 
 #------------------------------------------------------------------------------- PROJECT DIR
@@ -84,4 +85,11 @@ endif
 include $(call extension_manual_entry,main_config_post)
 
 include $(call extension_manual_entry,build_end)
+
+
+#------------------------------------------------------------------------------- NOT PARALLEL EXTENSIONS
+
+.NOTPARALLEL:
+
+include $(call extension_manual_entry,build_linear)
 

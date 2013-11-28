@@ -5,7 +5,7 @@ EXEC_CMD = $(CMD_PREFIX)g++
 PROJECT_TARGETS += $(EXEC_TARGETS)
 
 $(EXEC_TARGETS): %:
-	$(CMD_ECHO) "# linking executable <$@>"
+	$(CMD_MESSAGE) "linking executable <$@>"
 	$(CMD_MKDIR_ALL) $(dir $@)
 	$(EXEC_CMD) $(LINK_EXEC_FLAGS) -o $@ $^
 

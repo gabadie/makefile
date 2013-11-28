@@ -15,12 +15,14 @@ Guillaume Abadie's makefile solution
         Cleans targets
 
     > make full
-    > make clean ; make
-        Force compilation from scratch
+        Forces compilation from scratch
+
+    > make full/rec
+        Recursively forces compilation from scratch
 
     > make set
         Saves modified variable into the ./mkrepo
 
     > make params
-        Show all parameters in .mkrepo
+        Shows all parameters in ./.mkrepo
 
