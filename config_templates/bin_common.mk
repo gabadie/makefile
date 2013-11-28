@@ -8,7 +8,7 @@
 #
 # @parameter <PROJECT_TYPE>:
 #   - BINEXEC (default): to build a binary application
-#   - STATICLIB: to build a static binary lib
+#   - BINLIBSTATIC: to build a static binary lib
 #
 # @minimal example:
 #   - default_config.mk:
