@@ -86,3 +86,10 @@ include $(call extension_manual_entry,main_config_post)
 
 include $(call extension_manual_entry,build_end)
 
+
+#------------------------------------------------------------------------------- NOT PARALLEL EXTENSIONS
+
+.NOTPARALLEL:
+
+include $(call extension_manual_entry,build_linear)
+
