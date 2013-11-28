@@ -1,0 +1,8 @@
+
+EXTERNAL_TARGETS := $(foreach PROD,$(EXTERNAL_PRODUCTS), $(call product_target,$(PROD)))
+
+.PHONY: $(EXTERNAL_TARGETS)
+$(EXTERNAL_TARGETS): %:
+	$(CMD_ECHO) "# external product ..."
+	$(CMD_PREFIX)make -C $(EXTERNAL_PROJECT_DIR) $(EXTERNAL_PROJECT_OPTIONS) products=$(EXTERNAL_PROJECT_PRODUCT)
+
