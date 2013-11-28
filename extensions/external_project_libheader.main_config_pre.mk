@@ -9,5 +9,5 @@
 # @param EXTERN_PROJECT_DIR: external project's dir
 # @param OPTIONS: options (exemple: config=release)
 #
-project_libheaders_dir = $(addprefix -I $1,$(shell make -C $1 plumbing_include $2))
+project_libheaders_dir = $(addprefix -I $1,$(shell make -C $1 $(PLUMBING_PREFIX)include $2))
 
