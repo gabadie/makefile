@@ -1,11 +1,11 @@
 
-EXEC_TARGETS := $(foreach PROD,$(EXEC_PRODUCTS), $(call product_target,$(PROD)))
-EXEC_CMD = $(CMD_PREFIX)g++
+BINEXEC_TARGETS := $(foreach PROD,$(BINEXEC_PRODUCTS), $(call product_target,$(PROD)))
+BINEXEC_CMD = $(CMD_PREFIX)g++
 
-PROJECT_TARGETS += $(EXEC_TARGETS)
+PROJECT_TARGETS += $(BINEXEC_TARGETS)
 
-$(EXEC_TARGETS): %:
+$(BINEXEC_TARGETS): %:
 	$(CMD_MESSAGE) "linking executable <$@>"
 	$(CMD_MKDIR_ALL) $(dir $@)
-	$(EXEC_CMD) $(LINK_EXEC_FLAGS) -o $@ $^
+	$(BINEXEC_CMD) $(LINK_BINEXEC_FLAGS) -o $@ $^
 

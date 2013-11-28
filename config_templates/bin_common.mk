@@ -7,7 +7,7 @@
 #   compilation and linking flags
 #
 # @parameter <PROJECT_TYPE>:
-#   - EXEC (default): to build a binary application
+#   - BINEXEC (default): to build a binary application
 #   - STATICLIB: to build a static binary lib
 #
 # @minimal example:
@@ -17,7 +17,7 @@
 # @example 1:
 #   - default_config.mk:
 #       PROJECT_NAME = foo_bar
-#       PROJECT_TYPE = EXEC
+#       PROJECT_TYPE = BINEXEC
 #       GLOBAL_C_FLAGS = -Werror
 #       GLOBAL_CPP_FLAGS = -Werror
 #       GLOBAL_LINK_FLAGS = -lm
@@ -30,7 +30,7 @@
 #
 
 PROJECT_NAME ?= $(notdir $(shell pwd | sed 's/ /\\/g'))
-PROJECT_TYPE ?= EXEC
+PROJECT_TYPE ?= BINEXEC
 
 PRODUCT_NAME := $(call product_create,$(PROJECT_TYPE),$(PROJECT_NAME))
 PRODUCT_TARGET := $(call product_target,$(PRODUCT_NAME))
@@ -38,7 +38,7 @@ PRODUCT_TARGET := $(call product_target,$(PRODUCT_NAME))
 $(PRODUCT_TARGET): C_FLAGS = $(GLOBAL_C_FLAGS)
 $(PRODUCT_TARGET): CPP_FLAGS = $(GLOBAL_CPP_FLAGS)
 $(PRODUCT_TARGET): S_FLAGS = $(GLOBAL_S_FLAGS)
-$(PRODUCT_TARGET): LINK_EXEC_FLAGS = $(GLOBAL_LINK_FLAGS)
+$(PRODUCT_TARGET): LINK_BINEXEC_FLAGS = $(GLOBAL_LINK_FLAGS)
 $(PRODUCT_TARGET): $(call o_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s))
 $(PRODUCT_TARGET): $(GLOBAL_DEPENDENCIES)
 
