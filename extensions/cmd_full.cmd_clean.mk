@@ -1,6 +1,6 @@
 
 .PHONY: full
-full: clean $$(GLOBAL_UPDATE_TARGETS)
+full: clean $$(PROJECT_TARGETS)
 	$(CMD_ECHO) "# builds from scratsh finished"
 
 include $(extension_entry)

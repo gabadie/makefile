@@ -1,0 +1,5 @@
+
+.PHONY: $(PLUMBING_PREFIX)list_products
+$(PLUMBING_PREFIX)list_products:
+	@$(foreach PUBLIC_PRODUCT,$(PROJECT_PUBLIC_PRODUCTS),echo "$(PUBLIC_PRODUCT)";)
+

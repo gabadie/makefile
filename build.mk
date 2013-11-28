@@ -21,10 +21,8 @@ include $(MK_DIR)extension.mk
 
 #------------------------------------------------------------------------------- GLOBAL VARS
 
-GLOBAL_UPDATE_TARGETS =
-
-GLOBAL_PRODUCTS = $(filter $(BUILD_PRODUCT_DIR)%,$(GLOBAL_UPDATE_TARGETS))
-GLOBAL_PRODUCTS_SELECTED = $(if $(products),$(filter $(addsuffix .%,$(addprefix $(BUILD_PRODUCT_DIR),$(products))),$(GLOBAL_PRODUCTS)),$(GLOBAL_PRODUCTS))
+PROJECT_PRODUCTS =
+PROJECT_PRODUCTS_SELECTED = $(if $(products),$(filter $(products),$(PROJECT_PRODUCTS)),$(PROJECT_PRODUCTS))
 
 
 #------------------------------------------------------------------------------- COMMANDS SYMBOLS
@@ -43,7 +41,7 @@ PLUMBING_PREFIX := plumbing_
 #------------------------------------------------------------------------------- UPDATE COMMAND
 
 .PHONY: update
-update: $$(GLOBAL_UPDATE_TARGETS)
+update: $$(PROJECT_TARGETS)
 	$(CMD_ECHO) "# builds update finished"
 
 

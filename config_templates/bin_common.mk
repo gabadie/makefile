@@ -31,19 +31,18 @@
 
 PROJECT_NAME ?= $(notdir $(shell pwd | sed 's/ /\\/g'))
 PROJECT_TYPE ?= EXEC
-PROJECT_TARGET ?= $(BUILD_PRODUCT_DIR)$(PROJECT_NAME)$($(PROJECT_TYPE)_EXTENSION)
 
-$(PROJECT_TYPE)_TARGETS += $(PROJECT_TARGET)
+PRODUCT_NAME := $(call product_create,$(PROJECT_TYPE),$(PROJECT_NAME))
+PRODUCT_TARGET := $(call product_target,$(PRODUCT_NAME))
 
-$(PROJECT_TARGET): $$(call o_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s))
-$(PROJECT_TARGET): C_FLAGS = $(GLOBAL_C_FLAGS)
-$(PROJECT_TARGET): CPP_FLAGS = $(GLOBAL_CPP_FLAGS)
-$(PROJECT_TARGET): S_FLAGS = $(GLOBAL_S_FLAGS)
-$(PROJECT_TARGET): LINK_EXEC_FLAGS = $(GLOBAL_LINK_FLAGS)
+$(PRODUCT_TARGET): C_FLAGS = $(GLOBAL_C_FLAGS)
+$(PRODUCT_TARGET): CPP_FLAGS = $(GLOBAL_CPP_FLAGS)
+$(PRODUCT_TARGET): S_FLAGS = $(GLOBAL_S_FLAGS)
+$(PRODUCT_TARGET): LINK_EXEC_FLAGS = $(GLOBAL_LINK_FLAGS)
+$(PRODUCT_TARGET): $(call o_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s))
 
 .PHONY: run
-
-run: $(PROJECT_TARGET)
-	$(CMD_ECHO) "# running application <$(PROJECT_TARGET)>"
-	$(CMD_PREFIX)./$(PROJECT_TARGET)
+run: $(PRODUCT_TARGET)
+	$(CMD_ECHO) "# running application <$<>"
+	$(CMD_PREFIX)./$<
 
