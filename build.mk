@@ -61,7 +61,7 @@ $(call mkrepo_load_param,config,default)
 #------------------------------------------------------------------------------- COMMANDS
 
 BUILD_DIR ?= $(PROJECT_DIR)build-$(config)/
-BUILD_PRODUCT_DIR ?= $(BUILD_DIR)product/
+BUILD_PRODUCT_DIR ?= $(BUILD_DIR)products/
 
 
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
