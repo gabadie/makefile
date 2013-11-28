@@ -31,7 +31,7 @@ CMD_PREFIX ?= @
 
 CMD_CP = $(CMD_PREFIX)cp
 CMD_ECHO = @echo
-CMD_MESSAGE = $(CMD_ECHO) "\#"
+CMD_MESSAGE = $(CMD_ECHO) "\#" $(message_indent)
 CMD_MKDIR = $(CMD_PREFIX)mkdir
 CMD_MKDIR_ALL = $(CMD_MKDIR) -p
 CMD_RM = $(CMD_PREFIX)rm
