@@ -21,10 +21,14 @@ Guillaume Abadie's makefile solution
         Recursively forces compilation from scratch
 
     > make tests
+    > make test/update
         Updates tests
 
-    > make test/<product_name>
-        Forces test execution of a specific
+    > make test/full
+        Forces all tests
+
+    > make test/product/<product_name>
+        Forces test execution for a specific product
 
     > make set
         Saves modified variable into the ./mkrepo
