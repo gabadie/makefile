@@ -1,0 +1,3 @@
+
+BUILD_LOG_DIR = $(BUILD_DIR)logs/
+
