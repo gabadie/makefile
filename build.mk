@@ -44,7 +44,7 @@ PLUMBING_PREFIX := plumbing_
 
 .PHONY: update
 update: $$(PROJECT_TARGETS)
-	$(CMD_MESSAGE) "builds update finished"
+	$(CMD_IDLE)
 
 
 #------------------------------------------------------------------------------- PROJECT DIR
