@@ -20,6 +20,12 @@ Guillaume Abadie's makefile solution
     > make full/rec
         Recursively forces compilation from scratch
 
+    > make run/all
+        Updates and runs alls executable products
+
+    > make run/product/<product_name>
+        Updates and runs a specific product
+
     > make tests
     > make test/update
         Updates tests
