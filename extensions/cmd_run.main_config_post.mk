@@ -12,6 +12,15 @@ $(foreach PRODUCT,$(RUN_PRODUCTS), \
 )
 
 $(RUN_RULES):
-	$(CMD_MESSAGE) "running <$<>"
+	$(CMD_MESSAGE) "running <$<> ..."
 	$(CMD_PREFIX)./$<
+
+
+#
+# make run/all
+#
+
+.PHONY: run/all
+run/all: $(RUN_RULES)
+	$(CMD_IDLE)
 
