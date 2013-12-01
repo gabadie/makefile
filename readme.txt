@@ -2,9 +2,22 @@
 Guillaume Abadie's makefile solution
 
 @parameters:
+    - message_indent=STRING
+        string inserted at the begining of all message line
+
+@repo parameters:
+    A repo's parameter named <param> is a parameter that can
+    be saved in the file ./.mkrepo/<param>
+
+    the evaluation of a suck kind of parameter is done like that:
+        - uses the one defined in the command line
+        - else if difined in the repository: use it
+        - else uses a default value
+
     - config=CONFIG_NAME
         specify the CONFIG_NAME.mk configuration file in the
-        project's directory
+        project's directory. By default, config's value is:
+        default
 
 @common commands:
     > make
@@ -37,7 +50,7 @@ Guillaume Abadie's makefile solution
         Forces test execution for a specific product
 
     > make set
-        Saves modified variable into the ./mkrepo
+        Saves modified parameters into the ./.mkrepo
 
     > make params
         Shows all parameters in ./.mkrepo
