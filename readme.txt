@@ -52,7 +52,7 @@ Guillaume Abadie's makefile solution
             > make test/all config=release
 
             is equivalent as:
-            > make set config=release
+            > make param/set config=release
             > make update
             > make test/all
 
@@ -109,9 +109,9 @@ Guillaume Abadie's makefile solution
     > make test/product/<product_name>
         Forces test execution for a specific product
 
-    > make set
-        Saves modified parameters into the ./.mkrepo
+    > make param/set
+        Saves modified repository parameters
 
-    > make params
-        Shows all parameters in ./.mkrepo
+    > make param/show
+        Shows all repository parameters in ./.mkrepo
 
