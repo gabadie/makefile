@@ -1,18 +1,5 @@
 
-PLUMBING_BUILD_INCLUDE_DIR = $(PLUMBING_PREFIX)build_include_dir
 PLUMBING_PRODUCT_CCPP_INCLUDE_DIRS = $(PLUMBING_PREFIX)product_ccpp_include_dirs
-
-#
-# @infos: Gets project's lib headers directory
-#
-# @uses:
-#   $(call project_libheaders_dir,$(EXTERN_PROJECT_DIR))
-#   $(call project_libheaders_dir,$(EXTERN_PROJECT_DIR),$(OPTIONS))
-#
-# @param EXTERN_PROJECT_DIR: external project's dir
-# @param OPTIONS: options (exemple: config=release)
-#
-project_build_include_dir = $(addprefix -I $1,$(shell make -C $1 $(PLUMBING_BUILD_INCLUDE_DIR) $2))
 
 #
 # @infos: get product's include dirextories
@@ -71,8 +58,4 @@ EXTERNAL_PRODUCT_ENTRIES += CCPP_INCLUDE_external_product
 .PHONY: $(PLUMBING_PRODUCT_CCPP_INCLUDE_DIRS)
 $(PLUMBING_PRODUCT_CCPP_INCLUDE_DIRS):
 	$(CMD_IDLE) ; $(foreach PRODUCT,$(PROJECT_PRODUCTS_SELECTED), echo $(call product_c_cpp_include_dirs,$(PRODUCT)) ;)
-
-.PHONY: $(PLUMBING_BUILD_INCLUDE_DIR)
-$(PLUMBING_BUILD_INCLUDE_DIR):
-	@echo $(BUILD_INCLUDE_DIR)
 
