@@ -31,8 +31,8 @@ Guillaume Abadie's makefile solution
         The project configuration file is the file automatically
         included and defines all project's product. A project
         can have severals configuration files, but only one can be
-        used at a time with the repository parameter
-        config=CONFIG_NAME
+        used at a time with the repository parameter <config>
+        to load <config>.mk in the project directory.
 
     - project directory:
         The project directory is where the main makefile is. It also
