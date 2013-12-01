@@ -12,3 +12,6 @@ $(PRODUCT_TARGET): BINLIBSTATIC_FLAGS +=
 $(PRODUCT_TARGET): $(call bin_object_files,$(call rfindall,cpp) $(call rfindall,c) $(call rfindall,s))
 $(PRODUCT_TARGET): $(call product_target,$(EXTERNAL_PRODUCT))
 
+$(call libheader_add,foo_bar.h)
+$(PRODUCT_TARGET): C_FLAGS += $(call project_build_include_dir,../foo_bar/)
+
