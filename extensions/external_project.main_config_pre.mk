@@ -11,6 +11,7 @@
 #
 project_product = $2 \
     $(eval PRODUCT_$(strip $2)_TYPE = EXTERNAL)\
+    $(eval PRODUCT_$(strip $2)_PROJECT_DIR = $1)\
     $(eval PRODUCT_$(strip $2)_TARGET = $1$(shell make -C $1 $(PLUMBING_PREFIX)product_target products=$(strip $2) $3)) \
     $(eval EXTERNAL_PRODUCTS += $(strip $2)) \
     $(eval $(call product_target,$2): EXTERNAL_PROJECT_DIR = $1) \
