@@ -38,6 +38,6 @@ param/set:
 .PHONY: param/show
 param/show:
 	@$(foreach PARAM,$(MK_REPOSITORY_PARAMS),\
-	    echo "# $(PARAM) = $($(PARAM))";\
+	    echo "# $(message_indent) $(PARAM) = $($(PARAM))";\
 	)
 
