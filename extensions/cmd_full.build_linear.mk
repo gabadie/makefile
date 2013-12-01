@@ -3,7 +3,7 @@
 full/rec: EXTERNAL_REC_OPTIONS = full/rec
 
 full full/rec: clean $$(PROJECT_TARGETS)
-	$(CMD_MESSAGE) "builds from scratsh finished"
+	$(CMD_IDLE)
 
 include $(extension_entry)
 
