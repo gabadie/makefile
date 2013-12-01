@@ -41,3 +41,7 @@ param/show:
 	    echo "# $(message_indent) $(PARAM) = $($(PARAM))";\
 	)
 
+.PHONY: param/repo
+param/repo:
+	$(CMD_ECHO) $(abspath $(MK_REPOSITORY_DIR))
+

@@ -118,3 +118,6 @@ Guillaume Abadie's makefile solution
     > make param/show
         Shows all repository parameters in ./.mkrepo
 
+    > make param/repo
+        Shows the makefile repository path
+
