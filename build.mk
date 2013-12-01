@@ -36,6 +36,7 @@ CMD_MESSAGE = $(CMD_ECHO) "\#" $(message_indent)
 CMD_MKDIR = $(CMD_PREFIX)mkdir
 CMD_MKDIR_ALL = $(CMD_MKDIR) -p
 CMD_RM = $(CMD_PREFIX)rm
+CMD_PAGER = $(CMD_PREFIX)less
 
 PLUMBING_PREFIX := plumbing_
 
