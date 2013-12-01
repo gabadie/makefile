@@ -14,6 +14,7 @@ product_create = $2 \
     $(eval PRODUCT_$(strip $2)_TARGET = $(BUILD_PRODUCT_DIR)$(strip $2)$($(strip $1)_EXTENSION)) \
     $(eval $(strip $1)_PRODUCTS += $2) \
     $(eval PROJECT_PRODUCTS += $2) \
+    $(foreach FUNCTION,$(PRODUCT_ENTRIES),$(call $(FUNCTION),$1,$2)) \
 
 #
 # @infos: gets a product's target

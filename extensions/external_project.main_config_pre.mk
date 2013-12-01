@@ -16,5 +16,6 @@ project_product = $2 \
     $(eval EXTERNAL_PRODUCTS += $(strip $2)) \
     $(eval $(call product_target,$2): EXTERNAL_PROJECT_DIR = $1) \
     $(eval $(call product_target,$2): EXTERNAL_PROJECT_PRODUCT = $2) \
-    $(eval $(call product_target,$2): EXTERNAL_PROJECT_OPTIONS = $3)
+    $(eval $(call product_target,$2): EXTERNAL_PROJECT_OPTIONS = $3) \
+    $(foreach FUNCTION,$(EXTERNAL_PRODUCT_ENTRIES),$(call $(FUNCTION),$1,$2))
 
