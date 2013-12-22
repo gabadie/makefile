@@ -37,7 +37,7 @@
  * @param <name>: test's name
  * @param <condition>: test's condition to pass
  */
-#define test_condition(name,condition) \
+#define test_assert(name,condition) \
     { \
         if (condition) \
             test_passed(name); \
