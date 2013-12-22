@@ -8,6 +8,14 @@
 #include <stdio.h>
 
 /*
+ * @infos: convert a source code to a const char *
+ *
+ * @param <src>: source code to convert
+ */
+#define test_str(src) \
+    (const char *) #src
+
+/*
  * @infos: outputs that the test has succed
  *
  * @param <name>: test's name
