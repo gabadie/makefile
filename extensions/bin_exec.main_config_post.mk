@@ -4,8 +4,8 @@ BINEXEC_CMD = $(CMD_PREFIX)g++
 
 PROJECT_TARGETS += $(BINEXEC_TARGETS)
 
-$(BINEXEC_TARGETS): %:
+$(BINEXEC_TARGETS):
 	$(CMD_MESSAGE) "linking executable <$@>"
 	$(CMD_MKDIR_ALL) $(dir $@)
-	$(BINEXEC_CMD) $(BINEXEC_FLAGS) -o $@ $^
+	$(BINEXEC_CMD) $(BINEXEC_FLAGS) -o $@ $(filter %.o %.a %.c %.cpp %.s,$^)
 
