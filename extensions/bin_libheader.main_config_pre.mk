@@ -11,7 +11,7 @@ BUILD_INCLUDE_DIR = $(BUILD_DIR)includes/
 #
 # @param <MY_HEADER>: path to the header file
 #
-libheader_deps = $(filter-out /* ../* :,$(shell g++ -E -x c++-header -MM -MT "" "$1"))
+libheader_deps = $(call bin_header_deps,$1)
 
 #
 # @infos: register library headers and its dependencies
