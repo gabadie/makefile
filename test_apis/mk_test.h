@@ -29,7 +29,7 @@
  * @param <name>: test's name
  */
 #define test_failed(name) \
-    printf("- %s\n", (name))
+    printf("- %s (%s@%u)\n", (name), __FILE__, (unsigned int)__LINE__)
 
 /*
  * @infos: print test
