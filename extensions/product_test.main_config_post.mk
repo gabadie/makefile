@@ -3,8 +3,22 @@ TEST_LOGS := $(foreach TEST,$(TEST_PRODUCTS), $(call test_log,$(TEST)))
 
 $(TEST_LOGS):
 	$(CMD_MKDIR_ALL) $(dir $@)
-	$(CMD_PREFIX)./$< > $@
 	$(CMD_MESSAGE) "testing product <$(strip $(TEST_PRODUCT))>"
+	$(CMD_PREFIX)./$< > $@ ; \
+	RETURN=$$? ; \
+        FAILED_TEST=$$(sed -n '/^-/p' $@) ; \
+        FAILED_TEST_COUNT=$$(echo "$$FAILED_TEST" | grep -c "^-") ; \
+        if [ $$FAILED_TEST_COUNT -gt 0 ]; then \
+            FAILED_TEST=$$(echo "$$FAILED_TEST" | cut -d " " -f 2-); \
+            echo "\033[31m$$FAILED_TEST\033[m"; \
+            echo ; \
+            exit 1; \
+        fi; \
+        if [ $$RETURN -ne 0 ]; then \
+            echo "<$<> has returned $$RETURN"; \
+            echo ; \
+            exit 1; \
+        fi;
 
 .PHONY: $(PLUMBING_PREFIX)removes_log
 $(PLUMBING_PREFIX)removes_log:
