@@ -72,17 +72,18 @@ Guillaume Abadie's makefile solution
 
 @user commands:
     > make
-    > make update
+    > make build
+    > make build/update
         Updates targets
+
+    > make build/full
+        Forces compilation from scratch
+
+    > make build/full/rec
+        Recursively forces compilation from scratch
 
     > make clean
         Cleans targets
-
-    > make full
-        Forces compilation from scratch
-
-    > make full/rec
-        Recursively forces compilation from scratch
 
     > make show/products
         Shows all public products

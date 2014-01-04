@@ -44,10 +44,10 @@ CMD_PAGER = $(CMD_PREFIX)less
 PLUMBING_PREFIX := plumbing_
 
 
-#------------------------------------------------------------------------------- UPDATE COMMAND
+#------------------------------------------------------------------------------- DEFAULT ENTRY
 
-.PHONY: update
-update: $$(PROJECT_TARGETS)
+.PHONY: _default_entry
+_default_entry: $$(MK_DEFAULT_ENTRIES)
 	$(CMD_IDLE)
 
 
