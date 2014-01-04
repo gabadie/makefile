@@ -84,8 +84,11 @@ Guillaume Abadie's makefile solution
     > make full/rec
         Recursively forces compilation from scratch
 
+    > make show/products
+        Shows all public products
+
     > make show/targets
-        Shows all projects' target that are going to be built
+        Shows all products' target that are going to be built
 
     > make run/all
         Updates and runs alls executable products
