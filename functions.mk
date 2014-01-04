@@ -21,6 +21,16 @@ rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 rfindall=$(call rwildcard,./,*.$1)
 
 #
+# @infos: removes doubles
+#
+# @uses:
+#   $(call prunes_doubles,$(VARIABLES))
+#
+# @param <VARIABLES>: variables to removes doubles
+#
+prunes_doubles = $(if $1,$(firstword $1) $(filter-out $(firstword $1),$1))
+
+#
 # @infos: go to the parent dir
 #
 # @uses:

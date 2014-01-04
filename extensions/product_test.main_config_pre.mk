@@ -1,5 +1,10 @@
 
 #
+# @infos: constant defining where the test APIs' directory is
+#
+test_apis_dir := $(MK_DIR)test_apis
+
+#
 # @infos: Tests a product
 #
 # @uses:

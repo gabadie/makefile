@@ -8,6 +8,14 @@
 #include <stdio.h>
 
 /*
+ * @infos: convert a source code to a const char *
+ *
+ * @param <src>: source code to convert
+ */
+#define test_str(src) \
+    (const char *) #src
+
+/*
  * @infos: outputs that the test has succed
  *
  * @param <name>: test's name
@@ -21,7 +29,7 @@
  * @param <name>: test's name
  */
 #define test_failed(name) \
-    printf("- %s\n", (name))
+    printf("- %s (%s@%u)\n", (name), __FILE__, (unsigned int)__LINE__)
 
 /*
  * @infos: print test
@@ -29,7 +37,7 @@
  * @param <name>: test's name
  * @param <condition>: test's condition to pass
  */
-#define test_condition(name,condition) \
+#define test_assert(name,condition) \
     { \
         if (condition) \
             test_passed(name); \
