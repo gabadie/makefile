@@ -89,13 +89,16 @@ Guillaume Abadie's makefile solution
         Cleans targets
 
     > make show/products
-        Shows all public products
+        Shows public products
 
     > make show/products/all
         Shows all (public and private) products
 
     > make show/targets
-        Shows all products' target that are going to be built
+        Shows public products' targets
+
+    > make show/targets/all
+        Shows all (public and private) products' targets
 
     > make product/<product_name>/type
         Gets the product's type
