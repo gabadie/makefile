@@ -88,6 +88,9 @@ Guillaume Abadie's makefile solution
     > make clean
         Cleans targets
 
+    > make clobber
+        Clobber all targets of all configurations
+
     > make show/products
         Shows public products
 
