@@ -14,7 +14,7 @@ show/products/all:
 .PHONY: show/targets
 show/targets:
 	$(CMD_IDLE)
-	@$(foreach TARGET,$(PROJECT_TARGETS),echo $(TARGET);)
+	@$(foreach PRODUCT,$(PROJECT_PRODUCTS),echo "$(call product_target,$(PRODUCT))";)
 
 endif
 

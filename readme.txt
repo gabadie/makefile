@@ -74,7 +74,7 @@ Guillaume Abadie's makefile solution
     > make
     > make build
     > make build/update
-        Updates targets
+        Updates public products' targets
 
     > make build/full
         Forces compilation from scratch
