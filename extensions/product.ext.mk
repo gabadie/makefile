@@ -1,4 +1,6 @@
 
+ifeq ($(extension_entry),/config/pre)
+
 #
 # @infos: creates a product
 #
@@ -50,4 +52,14 @@ product_public = $($(eval PROJECT_PUBLIC_PRODUCTS += $1))
 product_project_dir = $(PRODUCT_$(strip $1)_PROJECT_DIR)
 
 PROJECT_PUBLIC_PRODUCTS =
+
+endif
+
+ifeq ($(extension_entry),/config/post)
+
+.PHONY: $(PLUMBING_PREFIX)list_products
+$(PLUMBING_PREFIX)list_products:
+	@$(foreach PUBLIC_PRODUCT,$(PROJECT_PUBLIC_PRODUCTS),echo "$(PUBLIC_PRODUCT)";)
+
+endif
 
