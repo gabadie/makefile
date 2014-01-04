@@ -1,4 +1,6 @@
 
+ifeq ($(extension_entry),/linear)
+
 #
 # make run/product/<product_name>
 #
@@ -23,4 +25,6 @@ $(RUN_RULES):
 .PHONY: run/all
 run/all: $(RUN_RULES)
 	$(CMD_IDLE)
+
+endif
 
