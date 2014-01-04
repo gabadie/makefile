@@ -82,6 +82,9 @@ Guillaume Abadie's makefile solution
     > make build/full/rec
         Recursively forces compilation from scratch
 
+    > make build/product/<product_name>
+        Updates a product's target
+
     > make clean
         Cleans targets
 
