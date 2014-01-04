@@ -1,4 +1,6 @@
 
+ifeq ($(extension_entry),/linear)
+
 .PHONY: show/products
 show/products:
 	$(CMD_IDLE)
@@ -8,4 +10,6 @@ show/products:
 show/targets:
 	$(CMD_IDLE)
 	@$(foreach TARGET,$(PROJECT_TARGETS),echo $(TARGET);)
+
+endif
 
