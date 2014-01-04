@@ -90,6 +90,9 @@ Guillaume Abadie's makefile solution
     > make show/targets
         Shows all products' target that are going to be built
 
+    > make product/<product_name>/type
+        Gets the product's type
+
     > make product/<product_name>/target
         Gets the product's target
 
