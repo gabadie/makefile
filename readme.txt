@@ -91,6 +91,9 @@ Guillaume Abadie's makefile solution
     > make show/products
         Shows all public products
 
+    > make show/products/all
+        Shows all (public and private) products
+
     > make show/targets
         Shows all products' target that are going to be built
 
