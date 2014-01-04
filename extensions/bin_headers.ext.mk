@@ -18,11 +18,11 @@ ifeq ($(extension_entry),/config/post)
 BINHEADERS_TARGETS := $(foreach PROD,$(BINHEADERS_PRODUCTS), $(call product_target,$(PROD)))
 BINHEADERS_CMD = $(CMD_PREFIX)ar -rcs
 
-$(BINHEADERS_TARGETS): %:
+$(BINHEADERS_TARGETS): %: $$(MK_DEPENDENCIES)
 	$(CMD_MESSAGE) "headers directory <$@/>"
 	$(CMD_RM) -rf $@
 	$(CMD_MKDIR_ALL) $@/
-	$(CMD_CP) $^ $@ ;\
+	$(CMD_CP) $(filter %.h %.hpp,$^) $@ ;\
         if [ $$? -ne 0 ]; then \
             rm -rf $@ ; \
             exit 1; \
