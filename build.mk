@@ -16,6 +16,9 @@ include $(MK_DIR)functions.mk
 
 #------------------------------------------------------------------------------- EXTENSIONS MANAGER
 
+GLOBAL_EXTENSION_DIR := $(dir $(lastword $(MAKEFILE_LIST)))extensions/
+GLOBAL_EXTENSION_LIST := $(wildcard $(GLOBAL_EXTENSION_DIR)/ext.*.mk)
+
 include $(MK_DIR)extension.mk
 
 
@@ -66,9 +69,15 @@ BUILD_DIR ?= $(PROJECT_DIR)build-$(config)/
 BUILD_PRODUCT_DIR ?= $(BUILD_DIR)products/
 
 
-#------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
+#------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS OLD
 
 include $(call extension_manual_entry,main_config_pre)
+
+
+#------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
+
+extension_entry :=/config/pre
+include $(GLOBAL_EXTENSION_LIST)
 
 
 #------------------------------------------------------------------------------- CONFIG
@@ -82,16 +91,27 @@ else
 endif
 
 
-#------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
+#------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS OLD
 
 include $(call extension_manual_entry,main_config_post)
 
 include $(call extension_manual_entry,build_end)
 
 
+#------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
+
+extension_entry :=/config/post
+include $(GLOBAL_EXTENSION_LIST)
+
+
 #------------------------------------------------------------------------------- NOT PARALLEL EXTENSIONS
 
 .NOTPARALLEL:
+
+extension_entry :=/linear
+include $(GLOBAL_EXTENSION_LIST)
+
+#------------------------------------------------------------------------------- NOT PARALLEL EXTENSIONS OLD
 
 include $(call extension_manual_entry,build_linear)
 

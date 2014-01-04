@@ -1,6 +1,4 @@
 
-GLOBAL_EXTENSION_DIR := $(dir $(lastword $(MAKEFILE_LIST)))extensions/
-
 #
 # @infos: manually define an extension entry point
 #
@@ -19,5 +17,5 @@ extension_manual_entry = $(wildcard $(GLOBAL_EXTENSION_DIR)*.$1.mk)
 #
 # @assert: any other include has been done before in the extension
 #
-extension_entry = $(call extension_manual_entry,$(firstword $(subst ., ,$(notdir $(lastword $(MAKEFILE_LIST))))))
+deprecated_extension_entry = $(call extension_manual_entry,$(firstword $(subst ., ,$(notdir $(lastword $(MAKEFILE_LIST))))))
 
