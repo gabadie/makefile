@@ -1,4 +1,6 @@
 
+ifeq ($(extension_entry),/config/pre)
+
 BUILD_OBJ_DIR ?= $(BUILD_DIR)objects/
 
 #
@@ -16,4 +18,6 @@ bin_object_file = $(BUILD_OBJ_DIR)$(strip $(notdir $1)).o
 #   $(call bin_object_files,main.cpp hello.c boot.s)
 #
 bin_object_files = $(foreach FILE,$1,$(call bin_object_file,$(FILE)))
+
+endif
 
