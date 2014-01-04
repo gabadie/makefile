@@ -30,6 +30,17 @@ product_create = $2 \
 product_target = $(PRODUCT_$(strip $1)_TARGET)
 
 #
+# @infos: gets a product's type
+#
+# @uses:
+#   $(call product_type,$(PRODUCT_NAME))
+#
+# @example:
+#   $(call product_type,hello_hex)
+#
+product_type = $(PRODUCT_$(strip $1)_TYPE)
+
+#
 # @infos: makes a project public
 #
 # @uses:
