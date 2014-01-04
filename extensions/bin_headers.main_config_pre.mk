@@ -7,5 +7,5 @@
 #
 # @param <MY_HEADER>: path to the header file
 #
-bin_header_deps = $(filter-out /* ../* : \,$(shell g++ -E -x c++-header -MM -MT "" "$1" 2> /dev/null))
+bin_header_deps = $(filter-out /* ../* : \,$(shell g++ -E -x c++-header -MM -MT "" "$1"))
 
