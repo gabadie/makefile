@@ -17,7 +17,7 @@ include $(MK_DIR)functions.mk
 #------------------------------------------------------------------------------- EXTENSIONS MANAGER
 
 GLOBAL_EXTENSION_DIR := $(dir $(lastword $(MAKEFILE_LIST)))extensions/
-GLOBAL_EXTENSION_LIST := $(wildcard $(GLOBAL_EXTENSION_DIR)/ext.*.mk)
+GLOBAL_EXTENSION_LIST := $(wildcard $(GLOBAL_EXTENSION_DIR)/*.ext.mk)
 
 include $(MK_DIR)extension.mk
 
