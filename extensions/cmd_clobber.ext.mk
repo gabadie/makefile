@@ -3,6 +3,7 @@ ifeq ($(extension_entry),/config/pre)
 
 PROJECT_CLOBBER_FILE = $(PROJECT_DIR)clobber
 BUILD_CLOBBER_FILE = $(BUILD_DIR)clobber
+BUILD_SURVIVORS += $(BUILD_CLOBBER_FILE)
 
 ifeq ($(wildcard $(PROJECT_CLOBBER_FILE)),$(strip $(PROJECT_CLOBBER_FILE)))
 MK_DEPENDENCIES += $(BUILD_CLOBBER_FILE)

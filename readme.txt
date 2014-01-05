@@ -86,7 +86,11 @@ Guillaume Abadie's makefile solution
         Updates a product's target
 
     > make clean
-        Cleans targets
+        Prunes the build directory content (execept for the logs dir,
+        product's target dir and the clobber mirror file)
+
+    > make trash
+        Removes the build directory
 
     > make clobber
         Clobber all targets of all configurations
