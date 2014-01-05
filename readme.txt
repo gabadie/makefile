@@ -66,6 +66,14 @@ Guillaume Abadie's makefile solution
         project's directory. By default, config's value is:
         default
 
+    - cc=COMPILOR
+        specify the C compilor (gcc, gcc-<version>, clang ...)
+        default: gcc -c -x c
+
+    - cxx=COMPILOR
+        specify the C++ compilor (g++, g++-<version>, clang++ ...)
+        default: g++ -c -x c++
+
 @project configuration file:
     Copy ./config_template.mk in your project directory and then
     edit it as you wish.
