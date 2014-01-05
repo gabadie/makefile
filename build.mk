@@ -1,4 +1,13 @@
 
+#------------------------------------------------------------------------------- EXPLICIT mk BEGIN
+
+ifdef ($(mk))
+
+include $(mk)
+
+else
+
+
 #------------------------------------------------------------------------------- GENERAL PURPOSE
 
 .SECONDEXPANSION:
@@ -98,4 +107,9 @@ include $(GLOBAL_EXTENSION_LIST)
 
 extension_entry :=/linear
 include $(GLOBAL_EXTENSION_LIST)
+
+
+#------------------------------------------------------------------------------- EXPLICIT mk END
+
+endif
 
