@@ -1,4 +1,6 @@
 
+ifeq ($(extension_entry),/config/pre)
+
 #
 # @infos: creates a product
 #
@@ -28,6 +30,17 @@ product_create = $2 \
 product_target = $(PRODUCT_$(strip $1)_TARGET)
 
 #
+# @infos: gets a product's type
+#
+# @uses:
+#   $(call product_type,$(PRODUCT_NAME))
+#
+# @example:
+#   $(call product_type,hello_hex)
+#
+product_type = $(PRODUCT_$(strip $1)_TYPE)
+
+#
 # @infos: makes a project public
 #
 # @uses:
@@ -50,4 +63,14 @@ product_public = $($(eval PROJECT_PUBLIC_PRODUCTS += $1))
 product_project_dir = $(PRODUCT_$(strip $1)_PROJECT_DIR)
 
 PROJECT_PUBLIC_PRODUCTS =
+
+endif
+
+ifeq ($(extension_entry),/config/post)
+
+.PHONY: $(PLUMBING_PREFIX)list_products
+$(PLUMBING_PREFIX)list_products:
+	@$(foreach PUBLIC_PRODUCT,$(PROJECT_PUBLIC_PRODUCTS),echo "$(PUBLIC_PRODUCT)";)
+
+endif
 

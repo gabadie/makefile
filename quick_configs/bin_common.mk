@@ -34,6 +34,7 @@ PROJECT_TYPE ?= BINEXEC
 
 PRODUCT_NAME := $(call product_create,$(PROJECT_TYPE),$(PROJECT_NAME))
 PRODUCT_TARGET := $(call product_target,$(PRODUCT_NAME))
+$(call product_public,$(PRODUCT_NAME))
 
 $(PRODUCT_TARGET): C_FLAGS += $(GLOBAL_C_FLAGS)
 $(PRODUCT_TARGET): CPP_FLAGS += $(GLOBAL_CPP_FLAGS)

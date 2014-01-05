@@ -66,29 +66,68 @@ Guillaume Abadie's makefile solution
         project's directory. By default, config's value is:
         default
 
+    - cc=COMPILOR
+        specify the C compilor (gcc, gcc-<version>, clang ...)
+        default: gcc -c -x c
+
+    - cxx=COMPILOR
+        specify the C++ compilor (g++, g++-<version>, clang++ ...)
+        default: g++ -c -x c++
+
+    - cxxheaders=COMPILOR
+        specify the C++ headers compilor (g++, g++-<version>, clang++ ...)
+        default: g++ -x c++-header
+
+    - ld=LINKER
+        specify the linker (g++, g++-<version>, clang++ ...)
+        default: g++
+
 @project configuration file:
     Copy ./config_template.mk in your project directory and then
     edit it as you wish.
 
 @user commands:
     > make
-    > make update
-        Updates targets
+    > make build
+    > make build/update
+        Updates public products' targets
 
-    > make clean
-        Cleans targets
-
-    > make full
+    > make build/full
         Forces compilation from scratch
 
-    > make full/rec
+    > make build/full/rec
         Recursively forces compilation from scratch
 
+    > make build/product/<product_name>
+        Updates a product's target
+
+    > make clean
+        Prunes the build directory content (execept for the logs dir,
+        product's target dir and the clobber mirror file)
+
+    > make trash
+        Removes the build directory
+
+    > make clobber
+        Clobber all targets of all configurations
+
     > make show/products
-        Shows all public products
+        Shows public products
+
+    > make show/products/all
+        Shows all (public and private) products
 
     > make show/targets
-        Shows all products' target that are going to be built
+        Shows public products' targets
+
+    > make show/targets/all
+        Shows all (public and private) products' targets
+
+    > make product/<product_name>/type
+        Gets the product's type
+
+    > make product/<product_name>/target
+        Gets the product's target
 
     > make run/all
         Updates and runs alls executable products

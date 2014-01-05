@@ -1,4 +1,6 @@
 
+ifeq ($(extension_entry),/config/pre)
+
 #
 # @infos: get link flags for an offcial library
 #
@@ -23,4 +25,6 @@ bin_officiallibs = $(foreach LIB_NAME,$1,$(call bin_officiallib,$(LIB_NAME)))
 
 
 BIN_OFFICIALLIB_opencl = $(if ($(OS_NAME),Darwin), -framework OpenCL, -lopencl)
+
+endif
 

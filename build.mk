@@ -1,12 +1,22 @@
 
+#------------------------------------------------------------------------------- EXPLICIT mk BEGIN
+
+ifdef ($(mk))
+
+include $(mk)
+
+else
+
+
 #------------------------------------------------------------------------------- GENERAL PURPOSE
 
 .SECONDEXPANSION:
 
 MK_THIS := $(lastword $(MAKEFILE_LIST))
 MK_DIR := $(dir $(MK_THIS))
+MK_DEPENDENCIES = $(MAKEFILE_LIST)
 
-GENERAL_VERSION = November 2013
+GENERAL_VERSION = January 2014
 
 
 #------------------------------------------------------------------------------- FUNCTIONS
@@ -16,7 +26,8 @@ include $(MK_DIR)functions.mk
 
 #------------------------------------------------------------------------------- EXTENSIONS MANAGER
 
-include $(MK_DIR)extension.mk
+GLOBAL_EXTENSION_DIR := $(dir $(lastword $(MAKEFILE_LIST)))extensions/
+GLOBAL_EXTENSION_LIST := $(wildcard $(GLOBAL_EXTENSION_DIR)/*.ext.mk)
 
 
 #------------------------------------------------------------------------------- GLOBAL VARS
@@ -41,10 +52,10 @@ CMD_PAGER = $(CMD_PREFIX)less
 PLUMBING_PREFIX := plumbing_
 
 
-#------------------------------------------------------------------------------- UPDATE COMMAND
+#------------------------------------------------------------------------------- DEFAULT ENTRY
 
-.PHONY: update
-update: $$(PROJECT_TARGETS)
+.PHONY: _default_entry
+_default_entry: $$(MK_DEFAULT_ENTRIES)
 	$(CMD_IDLE)
 
 
@@ -64,11 +75,13 @@ $(call mkrepo_load_param,config,default)
 
 BUILD_DIR ?= $(PROJECT_DIR)build-$(config)/
 BUILD_PRODUCT_DIR ?= $(BUILD_DIR)products/
+BUILD_SURVIVORS += $(BUILD_PRODUCT_DIR)
 
 
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
 
-include $(call extension_manual_entry,main_config_pre)
+extension_entry :=/config/pre
+include $(GLOBAL_EXTENSION_LIST)
 
 
 #------------------------------------------------------------------------------- CONFIG
@@ -84,14 +97,19 @@ endif
 
 #------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
 
-include $(call extension_manual_entry,main_config_post)
-
-include $(call extension_manual_entry,build_end)
+extension_entry :=/config/post
+include $(GLOBAL_EXTENSION_LIST)
 
 
 #------------------------------------------------------------------------------- NOT PARALLEL EXTENSIONS
 
 .NOTPARALLEL:
 
-include $(call extension_manual_entry,build_linear)
+extension_entry :=/linear
+include $(GLOBAL_EXTENSION_LIST)
+
+
+#------------------------------------------------------------------------------- EXPLICIT mk END
+
+endif
 

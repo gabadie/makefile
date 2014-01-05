@@ -3,7 +3,7 @@
 
 SUB_MAKEFILES = $(dir $(wildcard */makefile))
 
-MAKECMDGOALS ?= update
+MAKECMDGOALS ?= _default_entry
 
 
 #------------------------------------------------------------------------------- GENERIC RULE
