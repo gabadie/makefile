@@ -74,7 +74,7 @@ Guillaume Abadie's makefile solution
     > make
     > make build
     > make build/update
-        Updates targets
+        Updates public products' targets
 
     > make build/full
         Forces compilation from scratch
@@ -82,11 +82,17 @@ Guillaume Abadie's makefile solution
     > make build/full/rec
         Recursively forces compilation from scratch
 
+    > make build/product/<product_name>
+        Updates a product's target
+
     > make clean
         Cleans targets
 
     > make show/products
         Shows all public products
+
+    > make show/products/all
+        Shows all (public and private) products
 
     > make show/targets
         Shows all products' target that are going to be built
