@@ -16,7 +16,7 @@ MK_THIS := $(lastword $(MAKEFILE_LIST))
 MK_DIR := $(dir $(MK_THIS))
 MK_DEPENDENCIES = $(MAKEFILE_LIST)
 
-GENERAL_VERSION = November 2013
+GENERAL_VERSION = January 2014
 
 
 #------------------------------------------------------------------------------- FUNCTIONS
