@@ -20,8 +20,6 @@ include $(MK_DIR)functions.mk
 GLOBAL_EXTENSION_DIR := $(dir $(lastword $(MAKEFILE_LIST)))extensions/
 GLOBAL_EXTENSION_LIST := $(wildcard $(GLOBAL_EXTENSION_DIR)/*.ext.mk)
 
-include $(MK_DIR)extension.mk
-
 
 #------------------------------------------------------------------------------- GLOBAL VARS
 
@@ -71,11 +69,6 @@ BUILD_PRODUCT_DIR ?= $(BUILD_DIR)products/
 BUILD_SURVIVORS += $(BUILD_PRODUCT_DIR)
 
 
-#------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS OLD
-
-include $(call extension_manual_entry,main_config_pre)
-
-
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
 
 extension_entry :=/config/pre
@@ -93,13 +86,6 @@ else
 endif
 
 
-#------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS OLD
-
-include $(call extension_manual_entry,main_config_post)
-
-include $(call extension_manual_entry,build_end)
-
-
 #------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
 
 extension_entry :=/config/post
@@ -112,8 +98,4 @@ include $(GLOBAL_EXTENSION_LIST)
 
 extension_entry :=/linear
 include $(GLOBAL_EXTENSION_LIST)
-
-#------------------------------------------------------------------------------- NOT PARALLEL EXTENSIONS OLD
-
-include $(call extension_manual_entry,build_linear)
 
