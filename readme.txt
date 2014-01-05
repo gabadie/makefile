@@ -74,6 +74,10 @@ Guillaume Abadie's makefile solution
         specify the C++ compilor (g++, g++-<version>, clang++ ...)
         default: g++ -c -x c++
 
+    - cxxheaders=COMPILOR
+        specify the C++ headers compilor (g++, g++-<version>, clang++ ...)
+        default: g++ -x c++-header
+
     - ld=LINKER
         specify the linker (g++, g++-<version>, clang++ ...)
         default: g++

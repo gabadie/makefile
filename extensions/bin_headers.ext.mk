@@ -1,6 +1,8 @@
 
 ifeq ($(extension_entry),/config/pre)
 
+$(call mkrepo_load_param,cxxheader,g++ -x c++-header)
+
 #
 # @infos: return header dependencies
 #
@@ -9,7 +11,7 @@ ifeq ($(extension_entry),/config/pre)
 #
 # @param <MY_HEADER>: path to the header file
 #
-bin_header_deps = $(filter-out /* ../* : \,$(shell g++ -E -x c++-header -MM -MT "" "$1"))
+bin_header_deps = $(filter-out /* ../* : \,$(shell $(cxxheader) -E -MM -MT "" "$1"))
 
 endif
 
