@@ -74,6 +74,10 @@ Guillaume Abadie's makefile solution
         specify the C++ compilor (g++, g++-<version>, clang++ ...)
         default: g++ -c -x c++
 
+    - ld=LINKER
+        specify the linker (g++, g++-<version>, clang++ ...)
+        default: g++
+
 @project configuration file:
     Copy ./config_template.mk in your project directory and then
     edit it as you wish.
