@@ -15,7 +15,7 @@ BINEXEC_TARGETS := $(foreach PROD,$(BINEXEC_PRODUCTS), $(call product_target,$(P
 $(BINEXEC_TARGETS): %:
 	$(CMD_MESSAGE) "linking executable <$@>"
 	$(CMD_MKDIR_ALL) $(dir $@)
-	$(ld) $(BINEXEC_FLAGS) -o $@ $(filter %.o %.a %.c %.cpp %.s,$^)
+	$(CMD_PREFIX)$(ld) $(BINEXEC_FLAGS) -o $@ $(filter %.o %.a %.c %.cpp %.s,$^)
 
 endif
 
