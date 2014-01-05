@@ -4,6 +4,7 @@
 #
 PRODUCT_NAME := $(call product_create,BINEXEC,foo_bar)
 PRODUCT_TARGET := $(call product_target,$(PRODUCT_NAME))
+$(call product_public,$(PRODUCT_NAME))
 
 EXTERNAL_PRODUCT := $(call project_product,../foo_bar/,foo_bar_product)
 
