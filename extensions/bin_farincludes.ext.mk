@@ -1,4 +1,6 @@
 
+ifeq ($(extension_entry),/config/pre)
+
 PLUMBING_PRODUCT_CCPP_INCLUDE_DIRS = $(PLUMBING_PREFIX)product_ccpp_include_dirs
 
 #
@@ -58,4 +60,6 @@ EXTERNAL_PRODUCT_ENTRIES += CCPP_INCLUDE_external_product
 .PHONY: $(PLUMBING_PRODUCT_CCPP_INCLUDE_DIRS)
 $(PLUMBING_PRODUCT_CCPP_INCLUDE_DIRS):
 	$(CMD_IDLE) ; $(foreach PRODUCT,$(PROJECT_PRODUCTS_SELECTED), echo $(call product_c_cpp_include_dirs,$(PRODUCT)) ;)
+
+endif
 
