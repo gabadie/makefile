@@ -11,6 +11,7 @@ ifeq ($(extension_entry),/config/pre)
 #   $(call product_create,EXEC,hello_hex)
 #
 product_create = $2 \
+    $(if (PRODUCT_$(strip $2)_TYPE,), $(error product/<$(strip $2)> already exists))\
     $(eval PRODUCT_$(strip $2)_TYPE :=$(strip $1)) \
     $(eval PRODUCT_$(strip $2)_PROJECT_DIR = $(PROJECT_DIR))\
     $(eval PRODUCT_$(strip $2)_TARGET = $(BUILD_PRODUCT_DIR)$(strip $2)$($(strip $1)_EXTENSION)) \
