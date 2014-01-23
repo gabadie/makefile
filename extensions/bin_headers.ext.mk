@@ -13,6 +13,8 @@ $(call mkrepo_load_param,cxxheader,g++ -x c++-header)
 #
 bin_header_deps = $(filter-out /* ../* : \,$(shell $(cxxheader) -E -MM -MT "" "$1"))
 
+MK_KNOWN_PRODUCT_TYPES += BINHEADERS
+
 endif
 
 ifeq ($(extension_entry),/config/post)

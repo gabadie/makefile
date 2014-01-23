@@ -3,6 +3,8 @@ ifeq ($(extension_entry),/config/pre)
 
 BINLIBSTATIC_EXTENSION = .a
 
+MK_KNOWN_PRODUCT_TYPES += BINLIBSTATIC
+
 endif
 
 ifeq ($(extension_entry),/config/post)
