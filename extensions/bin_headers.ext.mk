@@ -15,6 +15,8 @@ bin_header_deps = $(filter-out /* ../* : \,$(shell $(cxxheader) -E -MM -MT "" "$
 
 MK_KNOWN_PRODUCT_TYPES += BINHEADERS
 
+STATS_EXTENSIONS += *.h *.hpp
+
 endif
 
 ifeq ($(extension_entry),/config/post)
