@@ -19,7 +19,7 @@ ifeq ($(extension_entry),/linear)
 
 ifeq ($(filter clobber,$(MAKECMDGOALS)),clobber)
 .PHONY: clobber
-clobber:
+clobber: trash
 	$(CMD_PREFIX)date > $(PROJECT_CLOBBER_FILE)
 endif
 
