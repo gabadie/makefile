@@ -12,7 +12,14 @@ ifeq ($(extension_entry),/config/pre)
 # @example:
 #   $(call filelist,directory/my_file.flist)
 #
-filelist = $(addprefix $(dir $(addprefix $(PROJECT_DIR),$1)),$(shell sed '/^\#/d' $(addprefix $(PROJECT_DIR),$1)))
+filelist = \
+    $(foreach FILELIST,$(addprefix $(PROJECT_DIR),$1), \
+        $(wildcard \
+            $(addprefix $(dir $(FILELIST)), \
+                $(shell sed '/^\#/d' $(FILELIST)) \
+            ) \
+        ) \
+    )
 
 endif
 
