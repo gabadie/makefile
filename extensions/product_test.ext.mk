@@ -16,6 +16,8 @@ test_apis_dir := $(MK_DIR)test_apis
 #   TEST_NAME := $(call test_product,hello_test_unit1)
 #
 test_product = $1 \
+    $(call product_assert_exist, test_product, $1)\
+    $(if $(strip $(call product_run_cmd, $1)),,$(error $(strip $1): product type $(strip $(call product_type,$1)) is not executable))\
     $(eval TEST_PRODUCTS += $1) \
     $(eval TEST_$(strip $1)_LOG = $(BUILD_LOG_DIR)test_$(strip $1).log) \
     $(eval $(TEST_$(strip $1)_LOG): $(call product_target,$1)) \
