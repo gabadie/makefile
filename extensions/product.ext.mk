@@ -16,6 +16,7 @@ product_create = $2 \
     $(eval PRODUCT_$(strip $2)_TYPE :=$(strip $1)) \
     $(eval PRODUCT_$(strip $2)_PROJECT_DIR = $(PROJECT_DIR))\
     $(eval PRODUCT_$(strip $2)_TARGET = $(BUILD_PRODUCT_DIR)$(strip $2)$($(strip $1)_EXTENSION)) \
+    $(eval PRODUCT_$(strip $2)_TARGET: SELF_PRODUCT = $2) \
     $(eval $(strip $1)_PRODUCTS += $2) \
     $(eval PROJECT_PRODUCTS += $2) \
     $(foreach FUNCTION,$(PRODUCT_ENTRIES),$(call $(FUNCTION),$1,$2)) \
