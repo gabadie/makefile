@@ -8,5 +8,7 @@ $(BUILD_DIR)%.s.o: $$(call rwildcard,./,*%.s) $(MK_DEPENDENCIES)
 	$(CMD_MKDIR_ALL) $(BUILD_OBJ_DIR)
 	$(CMD_PREFIX)$(CMD_COMPILOR_S) $(S_FLAGS) $< -o $@
 
+STATS_EXTENSIONS += *.s
+
 endif
 

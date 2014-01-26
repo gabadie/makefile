@@ -111,6 +111,9 @@ Guillaume Abadie's makefile solution
     > make clobber
         Clobber all targets of all configurations
 
+    > make stats
+        Prints statistiques per kinds of file
+
     > make show/products
         Shows public products
 

@@ -13,6 +13,10 @@ $(call mkrepo_load_param,cxxheader,g++ -x c++-header)
 #
 bin_header_deps = $(filter-out /* ../* : \,$(shell $(cxxheader) -E -MM -MT "" "$1"))
 
+MK_KNOWN_PRODUCT_TYPES += BINHEADERS
+
+STATS_EXTENSIONS += *.h *.hpp
+
 endif
 
 ifeq ($(extension_entry),/config/post)
@@ -21,7 +25,7 @@ BINHEADERS_TARGETS := $(foreach PROD,$(BINHEADERS_PRODUCTS), $(call product_targ
 BINHEADERS_CMD = $(CMD_PREFIX)ar -rcs
 
 $(BINHEADERS_TARGETS): %: $$(MK_DEPENDENCIES)
-	$(call history_rule,hearders directory,$@)
+	$(call history_rule,headers directory,$@)
 	$(CMD_RM) -rf $@
 	$(CMD_MKDIR_ALL) $@/
 	$(CMD_CP) $(filter %.h %.hpp,$^) $@ ;\

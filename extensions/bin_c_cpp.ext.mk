@@ -4,6 +4,8 @@ ifeq ($(extension_entry),/config/pre)
 $(call mkrepo_load_param,cc,gcc -c -x c)
 $(call mkrepo_load_param,cxx,g++ -c -x c++)
 
+STATS_EXTENSIONS += *.c *.cpp
+
 endif
 
 ifeq ($(extension_entry),/config/post)

@@ -11,12 +11,23 @@ ifeq ($(extension_entry),/config/pre)
 #   $(call product_create,EXEC,hello_hex)
 #
 product_create = $2 \
+    $(if $(PRODUCT_$(strip $2)_TYPE), $(error product/<$(strip $2)> already exists))\
+    $(if $(filter $(strip $1),$(MK_KNOWN_PRODUCT_TYPES)),, $(error product/<$(strip $2)>: unknown type $1 (must be one of: $(MK_KNOWN_PRODUCT_TYPES))))\
     $(eval PRODUCT_$(strip $2)_TYPE :=$(strip $1)) \
     $(eval PRODUCT_$(strip $2)_PROJECT_DIR = $(PROJECT_DIR))\
     $(eval PRODUCT_$(strip $2)_TARGET = $(BUILD_PRODUCT_DIR)$(strip $2)$($(strip $1)_EXTENSION)) \
     $(eval $(strip $1)_PRODUCTS += $2) \
     $(eval PROJECT_PRODUCTS += $2) \
     $(foreach FUNCTION,$(PRODUCT_ENTRIES),$(call $(FUNCTION),$1,$2)) \
+
+#
+# @infos: asserts that a given product is existing
+#
+# @uses:
+#   $(call product_assert_exist,$(FUNCTION_NAME),$(PRODUCT_NAME))
+#
+product_assert_exist = \
+    $(if $(PRODUCT_$(strip $2)_TYPE),,$(error $(strip $1): unknown product))\
 
 #
 # @infos: gets a product's target
@@ -27,7 +38,9 @@ product_create = $2 \
 # @example:
 #   $(call product_target,hello_hex)
 #
-product_target = $(PRODUCT_$(strip $1)_TARGET)
+product_target = \
+    $(call product_assert_exist, product_target, $1)\
+    $(PRODUCT_$(strip $1)_TARGET)
 
 #
 # @infos: gets a product's type
@@ -38,7 +51,9 @@ product_target = $(PRODUCT_$(strip $1)_TARGET)
 # @example:
 #   $(call product_type,hello_hex)
 #
-product_type = $(PRODUCT_$(strip $1)_TYPE)
+product_type = \
+    $(call product_assert_exist, product_type, $1)\
+    $(PRODUCT_$(strip $1)_TYPE)
 
 #
 # @infos: makes a project public
@@ -49,7 +64,10 @@ product_type = $(PRODUCT_$(strip $1)_TYPE)
 # @example:
 #   $(call product_public,hello_hex)
 #
-product_public = $($(eval PROJECT_PUBLIC_PRODUCTS += $1))
+product_public = \
+    $(call product_assert_exist, product_public, $1)\
+    $(eval PROJECT_PUBLIC_PRODUCTS += $1)\
+    $(eval $(call product_target,$1): SELF_PRODUCT_PUBLIC=true)
 
 #
 # @infos: gets a product's project directory
@@ -60,7 +78,9 @@ product_public = $($(eval PROJECT_PUBLIC_PRODUCTS += $1))
 # @example:
 #   $(call product_project_dir,hello_hex)
 #
-product_project_dir = $(PRODUCT_$(strip $1)_PROJECT_DIR)
+product_project_dir = \
+    $(call product_assert_exist, product_project_dir, $1)\
+    $(PRODUCT_$(strip $1)_PROJECT_DIR)
 
 PROJECT_PUBLIC_PRODUCTS =
 

@@ -22,12 +22,38 @@ test_product = $1 \
     $(eval $(TEST_$(strip $1)_LOG): TEST_PRODUCT = $1)
 
 #
+# @infos: Tests severals products
+#
+# @uses:
+#   $(call test_products,$(PRODUCT_NAMES))
+#
+# @example:
+#   TEST_NAME := $(call test_products,$(PRODUCT1) $(PRODUCT2))
+#
+test_products = \
+    $(foreach PRODUCT,$1, \
+        $(call test_product,$(PRODUCT)) \
+    )
+
+#
 # @infos: Gets a test's target log
 #
 # @uses:
 #   $(call test_log,$(TEST_NAME))
 #
 test_log = $(TEST_$(strip $1)_LOG)
+
+#
+# @infos: Gets tests' target logs
+#
+# @uses:
+#   $(call test_logs,$(TEST_NAMES))
+#
+test_logs = \
+    $(foreach PRODUCT_NAME,$1,\
+        $(call test_log,$(PRODUCT_NAME)) \
+    )
+
 
 TEST_PRODUCTS =
 
@@ -39,19 +65,19 @@ TEST_LOGS := $(foreach TEST,$(TEST_PRODUCTS), $(call test_log,$(TEST)))
 
 $(TEST_LOGS):
 	$(CMD_MKDIR_ALL) $(dir $@)
-	$(call history_rule,testing executable,$<)
+	$(call history_colored_rule,testing executable,$<,GREEN)
 	$(CMD_PREFIX)./$< > $@ ; \
 	RETURN=$$? ; \
         FAILED_TEST=$$(sed -n '/^-/p' $@) ; \
         FAILED_TEST_COUNT=$$(echo "$$FAILED_TEST" | grep -c "^-") ; \
         if [ $$FAILED_TEST_COUNT -gt 0 ]; then \
             FAILED_TEST=$$(echo "$$FAILED_TEST" | cut -d " " -f 2-); \
-            echo "\033[31m$$FAILED_TEST\033[m"; \
+            echo "$(call color_error)$$FAILED_TEST$(call color_reset)"; \
             echo ; \
             exit 1; \
         fi; \
         if [ $$RETURN -ne 0 ]; then \
-            echo "<$<> has returned $$RETURN"; \
+            echo "$(call color_error)<$<> has returned $$RETURN$(call color_reset)"; \
             echo ; \
             exit 1; \
         fi;

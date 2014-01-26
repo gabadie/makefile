@@ -5,6 +5,7 @@ $(call mkrepo_load_param,ld,g++)
 
 BINEXEC_EXTENSION =
 RUN_PRODUCTS += $(BINEXEC_PRODUCTS)
+MK_KNOWN_PRODUCT_TYPES += BINEXEC
 
 endif
 
