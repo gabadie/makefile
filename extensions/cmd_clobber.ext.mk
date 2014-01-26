@@ -9,6 +9,10 @@ ifeq ($(wildcard $(PROJECT_CLOBBER_FILE)),$(strip $(PROJECT_CLOBBER_FILE)))
 MK_DEPENDENCIES += $(BUILD_CLOBBER_FILE)
 endif
 
+endif
+
+ifeq ($(extension_entry),/config/post)
+
 $(BUILD_CLOBBER_FILE): $(PROJECT_CLOBBER_FILE)
 	$(CMD_MKDIR_ALL) $(dir $@)
 	$(CMD_CP) $< $@
