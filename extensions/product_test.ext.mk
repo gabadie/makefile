@@ -22,12 +22,38 @@ test_product = $1 \
     $(eval $(TEST_$(strip $1)_LOG): TEST_PRODUCT = $1)
 
 #
+# @infos: Tests severals products
+#
+# @uses:
+#   $(call test_products,$(PRODUCT_NAMES))
+#
+# @example:
+#   TEST_NAME := $(call test_products,$(PRODUCT1) $(PRODUCT2))
+#
+test_products = \
+    $(foreach PRODUCT,$1, \
+        $(call test_product,$(PRODUCT)) \
+    )
+
+#
 # @infos: Gets a test's target log
 #
 # @uses:
 #   $(call test_log,$(TEST_NAME))
 #
 test_log = $(TEST_$(strip $1)_LOG)
+
+#
+# @infos: Gets tests' target logs
+#
+# @uses:
+#   $(call test_logs,$(TEST_NAMES))
+#
+test_logs = \
+    $(foreach PRODUCT_NAME,$1,\
+        $(call test_log,$(PRODUCT_NAME)) \
+    )
+
 
 TEST_PRODUCTS =
 
