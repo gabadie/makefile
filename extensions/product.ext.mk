@@ -102,6 +102,16 @@ product_run_cmd = \
     $(call product_assert_exist, product_run_cmd, $1)\
     $(call $(call product_type,$1)_run_cmd,$1)
 
+#
+# @infos: gets the openning invocation command
+#
+# @uses:
+#   $(call product_open_cmd,$(PRODUCT_NAME))
+#
+product_open_cmd = \
+    $(call product_assert_exist, product_open_cmd, $1)\
+    $(call $(call product_type,$1)_open_cmd,$1)
+
 PROJECT_PUBLIC_PRODUCTS =
 
 endif

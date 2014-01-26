@@ -10,11 +10,11 @@ LATEXPDF_create_target = \
     $(BUILD_PRODUCT_DIR)$(strip $1).pdf
 
 #
-# @infos: gets the running invocation command
+# @infos: gets the openning invocation command
 #
-# @caution: do not use it as is, Consider to use product_run_cmd
+# @caution: do not use it as is, Consider to use product_open_cmd
 #
-LATEXPDF_run_cmd = open $(strip $(call product_target,$1))
+LATEXPDF_open_cmd = open $(strip $(call product_target,$1))
 
 #
 # @infos: Lets product_create be able to create a LATEXPDF product
