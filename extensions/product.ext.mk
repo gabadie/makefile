@@ -71,6 +71,15 @@ product_public = \
     $(eval $(call product_target,$1): SELF_PRODUCT_PUBLIC=true)
 
 #
+# @infos: gets a product temporay directory
+#
+# @uses:
+#   $(call product_tmp_dir,$(PRODUCT_NAME))
+#
+product_tmp_dir = $(BUILD_DIR_DIR)$(strip $1)/\
+    $(call product_assert_exist, product_tmp_dir, $1)
+
+#
 # @infos: gets a product's project directory
 #
 # @uses:
