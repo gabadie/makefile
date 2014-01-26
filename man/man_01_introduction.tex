@@ -1,0 +1,76 @@
+\chapter{Introduction}
+
+Candy Makefile is a is a platform a makefile ready to build C/C++ application, \LaTeX documents,
+and many other things to come. The idea is to code all building pipeline once, and then use it
+every where by only few lines.
+
+
+\section{Setup}
+
+\subsection{Step 1: Clone from Github}
+
+The first thing you have to do is, well... Download lastest Candy Makefile by simply cloning
+its official repository: \url{http://github.com/gabadie/makefile}
+
+Using Git:
+\begin{lstlisting}[language=bash]
+> git clone https://github.com/gabadie/makefile.git candy_makefile
+\end{lstlisting}
+
+Or using Subversion:
+\begin{lstlisting}[language=bash]
+> svn checkout https://github.com/gabadie/makefile candy_makefile
+\end{lstlisting}
+
+Notes: You may be intesrted by cloning its repository in the project's repository your are begining
+to work on.
+\begin{lstlisting}[language=bash]
+> git submodule init
+> git submodule add https://github.com/gabadie/makefile.git candy_makefile
+\end{lstlisting}
+
+
+\subsection{Step 2: Create your makefile}
+
+Now you need to create your makefile, but that is going to be very easy because it will only
+include a Candy Makefile's .mk file:
+
+\begin{lstlisting}[language=make]
+#
+# include Candy Makefile's entry point
+#
+include candy_makefile/build.mk
+\end{lstlisting}
+
+
+\subsection{Step 3: Create the project configuration file}
+
+The project configuration file is where all appen, where you are going to create all your project's
+products. Only one thing to note: It has to be in the current working directory, besides of the
+makefile we have just created right before.
+
+\begin{lstlisting}[language=bash]
+> touch candy_project.mk
+\end{lstlisting}
+
+
+\subsection{Step 4: Edit the project configuration file}
+
+Now you will just need to edit your project configuration file as need for your products. For example,
+let us say that you want only a PDF product generated from a \LaTeX source code for a MAN. Then, you
+will create just the following lines:
+
+\lstinputlisting[language=make]{candy_project.mk}
+
+And your \LaTeX document is now ready to be built with:
+
+\begin{lstlisting}[language=bash]
+> make
+\end{lstlisting}
+
+And then, just open it by~;
+
+\begin{lstlisting}[language=bash]
+> make open/all
+\end{lstlisting}
+

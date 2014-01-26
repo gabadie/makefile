@@ -1,0 +1,31 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+\usepackage{../latex/library}
+
+\lstset{
+    basicstyle=\footnotesize,
+    breaklines=true,
+    frame=single,
+    keepspaces=true,
+    tabsize=2
+}
+
+\title{Candy Makefile's MAN}
+\author{Guillaume Abadie}
+\date{\today}
+
+\begin{document}
+
+    \frontmatter
+    \maketitle
+    \tableofcontents
+
+    \mainmatter
+    \include{man_01_introduction}
+    \include{man_02_api}
+    \include{man_03_commands}
+
+    \backmatter
+
+\end{document}
+
