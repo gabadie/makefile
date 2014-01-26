@@ -1,0 +1,78 @@
+\chapter{Project's products}
+
+Candy Makefile let you to have severals products in your same product. Each product can
+be of differents types, but each product can only have one target at a time. The product's
+target is the what your are going to have at the very end of the differents pipelines, and
+they can be changes, depending on the configuration.
+
+Candy Makefile brings a object oriented API to manipulate very easily all differents
+project's products. This entire chapter is dedicated to this API.
+
+
+\section{Create a product}
+
+Hey, wait a minute... I'm supposed to create the project, not Candy Makefile!
+What does 'create a product' mean? Easy: Like all object oriented API, before manipulating
+an object, you need to create (or instantiate) it. Therefore creating a product is only
+creating the virtual object associated to your real product.
+
+For that purpose, you have the following function returning a new product:
+
+\begin{lstlisting}[language=make]
+$(call product_create,<product_type>,<product_name>)
+\end{lstlisting}
+
+\begin{description}
+    \item[Parameter product\_type] is the type of the product. For example, if you want a
+    product generated from a \LaTeX source code, then it should be \textit{LATEXPDF}.
+    \item[Parameter product\_name] is the name of the product your are creating. It must be
+    unic for each product. Example: \textit{foo\_bar}.
+    \item[Returns] the newly created product object.
+\end{description}
+
+Example:
+\begin{lstlisting}[language=make]
+FOO_BAR_PRODUCT := $(call product_create,LATEXPDF,foo_bar)
+\end{lstlisting}
+
+
+\section{Make a product public}
+
+A public product is a product that you can build directly with the command lines
+\textit{build/update} or \textit{build/full}. Indeed, you may not want to build testing
+products when you want to building product that you are actually going to release.
+
+\begin{lstlisting}[language=make]
+$(call product_public,<product_obj>)
+\end{lstlisting}
+
+\begin{description}
+    \item[Parameter product\_obj] a valid product object.
+    \item[Returns] nothing.
+\end{description}
+
+Example:
+\begin{lstlisting}[language=make]
+$(call product_create,$(FOO_BAR_PRODUCT))
+\end{lstlisting}
+
+
+\section{Get the product's target}
+
+The product's target is what your are actually going to build in the product directory.
+It is what you want to configure.
+
+\begin{lstlisting}[language=make]
+$(call product_target,<product_obj>)
+\end{lstlisting}
+
+\begin{description}
+    \item[Parameter product\_obj] a valid product object.
+    \item[Returns] the product's target.
+\end{description}
+
+Example:
+\begin{lstlisting}[language=make]
+FOO_BAR_TARGET := $(call product_target,$(FOO_BAR_PRODUCT))
+\end{lstlisting}
+
