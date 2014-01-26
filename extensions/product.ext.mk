@@ -83,6 +83,16 @@ product_project_dir = \
     $(call product_assert_exist, product_project_dir, $1)\
     $(PRODUCT_$(strip $1)_PROJECT_DIR)
 
+#
+# @infos: gets the running invocation command
+#
+# @uses:
+#   $(call product_run_cmd,$(PRODUCT_NAME))
+#
+product_run_cmd = \
+    $(call product_assert_exist, product_run_cmd, $1)\
+    $(call $(call product_type,$1)_run_cmd,$1)
+
 PROJECT_PUBLIC_PRODUCTS =
 
 endif

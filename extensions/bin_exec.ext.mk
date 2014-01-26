@@ -4,8 +4,18 @@ ifeq ($(extension_entry),/config/pre)
 $(call mkrepo_load_param,ld,g++)
 
 BINEXEC_EXTENSION =
-RUN_PRODUCTS += $(BINEXEC_PRODUCTS)
+
+#
+# @infos: Lets product_create be able to create a BINEXEC product
+#
 MK_KNOWN_PRODUCT_TYPES += BINEXEC
+
+#
+# @infos: gets the running invocation command
+#
+# @caution: do not use it as is, Consider to use product_run_cmd
+#
+BINEXEC_run_cmd = ./$(strip $(call product_target,$1))
 
 endif
 
