@@ -5,16 +5,15 @@ ifeq ($(extension_entry),/linear)
 # make run/product/<product_name>
 #
 
-RUN_RULES = $(addprefix run/product/,$(RUN_PRODUCTS))
-
-.PHONY: $(RUN_RULES)
-
 $(foreach PRODUCT,$(PROJECT_PRODUCTS), \
-    $(if $(call product_run_cmd,$(PRODUCT)), \
+    $(if $(strip $(call product_run_cmd,$(PRODUCT))), \
         $(eval run/product/$(PRODUCT): $(call product_target,$(PRODUCT))) \
         $(eval run/product/$(PRODUCT): SELF_PRODUCT = $(PRODUCT)) \
+        $(eval RUN_RULES += run/product/$(PRODUCT)) \
     ) \
 )
+
+.PHONY: $(RUN_RULES)
 
 $(RUN_RULES):
 	$(CMD_MESSAGE) "running <$<> ..."
