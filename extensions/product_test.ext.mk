@@ -66,7 +66,7 @@ TEST_LOGS := $(foreach TEST,$(TEST_PRODUCTS), $(call test_log,$(TEST)))
 $(TEST_LOGS):
 	$(CMD_MKDIR_ALL) $(dir $@)
 	$(call history_colored_rule,testing executable,$<,GREEN)
-	$(CMD_PREFIX)./$< > $@ ; \
+	$(CMD_PREFIX)$(call product_run_cmd,$(TEST_PRODUCT)) > $@ ; \
 	RETURN=$$? ; \
         FAILED_TEST=$$(sed -n '/^-/p' $@) ; \
         FAILED_TEST_COUNT=$$(echo "$$FAILED_TEST" | grep -c "^-") ; \
