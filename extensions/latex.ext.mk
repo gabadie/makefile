@@ -31,7 +31,7 @@ LATEXPDF_TARGETS := $(foreach PROD,$(LATEXPDF_PRODUCTS), $(call product_target,$
 
 $(foreach PRODUCT,$(LATEXPDF_PRODUCTS), \
     $(eval $(call product_target,$(PRODUCT)): LATEXPDF_TMP_DIR = $(call product_tmp_dir,$(PRODUCT))) \
-    $(eval $(call product_target,$(PRODUCT)): LATEXPDF_STD = $(call product_tmp_dir,$(PRODUCT))$(strip $(PRODUCT)).stdout) \
+    $(eval $(call product_target,$(PRODUCT)): LATEXPDF_STD = $(strip $(call product_tmp_dir,$(PRODUCT)))$(strip $(PRODUCT)).stdout) \
 )
 
 
