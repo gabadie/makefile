@@ -65,7 +65,7 @@ TEST_LOGS := $(foreach TEST,$(TEST_PRODUCTS), $(call test_log,$(TEST)))
 
 $(TEST_LOGS):
 	$(CMD_MKDIR_ALL) $(dir $@)
-	$(call history_rule,testing executable,$<)
+	$(call history_colored_rule,testing executable,$<,GREEN)
 	$(CMD_PREFIX)./$< > $@ ; \
 	RETURN=$$? ; \
         FAILED_TEST=$$(sed -n '/^-/p' $@) ; \
