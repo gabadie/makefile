@@ -66,7 +66,8 @@ product_type = \
 #
 product_public = \
     $(call product_assert_exist, product_public, $1)\
-    $(eval PROJECT_PUBLIC_PRODUCTS += $1)
+    $(eval PROJECT_PUBLIC_PRODUCTS += $1)\
+    $(eval $(call product_target,$1): SELF_PRODUCT_PUBLIC=true)
 
 #
 # @infos: gets a product's project directory
