@@ -16,6 +16,7 @@ COLOR_PREFIX=\033[
 COLOR_ERROR_FG=RED
 COLOR_WARNING_FG=PINK
 COLOR_TIME_FG=BLUE
+COLOR_PRIVATE_FG=GREY
 
 #
 # @infos: change text color
@@ -59,6 +60,14 @@ color_warning=$(call color_text,$(COLOR_WARNING_FG))
 #   $(call color_time)
 #
 color_time=$(call color_text,$(COLOR_TIME_FG))
+
+#
+# @infos: change color to the private color
+#
+# @uses:
+#   $(call color_private)
+#
+color_private=$(call color_text,$(COLOR_PRIVATE_FG))
 
 endif
 
