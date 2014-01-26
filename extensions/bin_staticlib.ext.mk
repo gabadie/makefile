@@ -1,8 +1,17 @@
 
 ifeq ($(extension_entry),/config/pre)
 
-BINLIBSTATIC_EXTENSION = .a
+#
+# @infos: create a product's target
+#
+# @caution: do not use it as is, it is automatically called in product_create
+#
+BINLIBSTATIC_create_target = \
+    $(BUILD_PRODUCT_DIR)$(strip $1).a
 
+#
+# @infos: Lets product_create be able to create a BINLIBSTATIC product
+#
 MK_KNOWN_PRODUCT_TYPES += BINLIBSTATIC
 
 endif
