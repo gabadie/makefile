@@ -44,6 +44,15 @@ product_target = \
     $(PRODUCT_$(strip $1)_TARGET)
 
 #
+# @infos: gets products' targets
+#
+# @uses:
+#   $(call product_targets,$(PRODUCT_NAMES))
+#
+product_targets = \
+    $(foreach PRODUCT,$1,$(call product_target,$(PRODUCT)))
+
+#
 # @infos: sets a product's target
 #
 # @uses:
