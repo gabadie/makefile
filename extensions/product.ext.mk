@@ -44,6 +44,16 @@ product_target = \
     $(PRODUCT_$(strip $1)_TARGET)
 
 #
+# @infos: sets a product's target
+#
+# @uses:
+#   TARGET = $(call product_set_target,$(PRODUCT_NAME),$(PRODUCT_TARGET))
+#
+product_set_target = $2\
+    $(call product_assert_exist, product_target, $1)\
+    $(eval PRODUCT_$(strip $1)_TARGET = $2)
+
+#
 # @infos: gets a product's type
 #
 # @uses:
