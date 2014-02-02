@@ -131,6 +131,16 @@ product_open_cmd = \
     $(call product_assert_exist, product_open_cmd, $1)\
     $(call $(call product_type,$1)_open_cmd,$1)
 
+#
+# @infos: gets product of a given type
+#
+# @uses:
+#   $(call product_type_list,$(PRODUCT_TYPE))
+#
+product_type_list = \
+    $($(strip $1)_PRODUCTS)
+
+
 PROJECT_PUBLIC_PRODUCTS =
 
 endif
