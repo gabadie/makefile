@@ -34,10 +34,23 @@
 /*
  * @infos: print test
  *
+ * @param <condition>: test's condition to pass
+ */
+#define test_assert(condition) \
+    { \
+        if (condition) \
+            test_passed(test_str(condition)); \
+        else \
+            test_failed(test_str(condition)); \
+    }
+
+/*
+ * @infos: print test
+ *
  * @param <name>: test's name
  * @param <condition>: test's condition to pass
  */
-#define test_assert(name,condition) \
+#define test_assert2(name,condition) \
     { \
         if (condition) \
             test_passed(name); \
