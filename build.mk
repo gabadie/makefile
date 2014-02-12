@@ -86,7 +86,7 @@ include $(GLOBAL_EXTENSION_LIST)
 
 #------------------------------------------------------------------------------- CONFIG
 
-MK_CONFIG_PATH = $(config).mk
+MK_CONFIG_PATH = $(PROJECT_DIR)candy_project.mk
 
 ifeq ($(wildcard $(MK_CONFIG_PATH)),)
     $(error $(MK_CONFIG_PATH) does not exist)

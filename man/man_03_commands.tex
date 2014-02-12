@@ -1,0 +1,134 @@
+\chapter{Commands}
+
+\section{Build commands}
+
+\subsection{Update all public product}
+
+\begin{lstlisting}[language=bash]
+> make
+> make build/update
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Updates all public products' targets if needed.
+\end{description}
+
+
+\subsection{Update a specific product}
+
+\begin{lstlisting}[language=bash]
+> make build/product/<product_name>
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Updates \textit{product\_name}'s target if needed.
+    \item[Parameter product\_name:] An existing product's name.
+\end{description}
+
+
+\subsection{Forces build from scratch}
+
+\begin{lstlisting}[language=bash]
+> make build/full
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Forces compilation of all public product's target from scratch.
+\end{description}
+
+
+\subsection{Recursively force build from scratch}
+
+\begin{lstlisting}[language=bash]
+> make build/full/rec
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Recursively forces compilation of all public product's target from scratch.
+\end{description}
+
+
+\section{Mr proper commands}
+
+\subsection{Clean build directory}
+
+\begin{lstlisting}[language=bash]
+> make clean
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Cleans the entire build directory, except for logs' and products' directories.
+\end{description}
+
+
+\subsection{Delete build directory}
+
+\begin{lstlisting}[language=bash]
+> make trash
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Deletes the entire build directory and its content.
+\end{description}
+
+
+\subsection{Clobber build}
+
+\begin{lstlisting}[language=bash]
+> make clobber
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Deletes the entire build directory and its content, and update the clobber file.
+\end{description}
+
+
+\section{Open commands}
+
+\subsection{Open a product}
+
+\begin{lstlisting}[language=bash]
+> make open/product/<product_name>
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Open a valide openable product.
+    \item[Parameter product\_name:] An existing product's name.
+\end{description}
+
+
+\subsection{Open all openable products}
+
+\begin{lstlisting}[language=bash]
+> make open/all
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Open all openable products.
+\end{description}
+
+
+\section{Run commands}
+
+\subsection{Run a product}
+
+\begin{lstlisting}[language=bash]
+> make run/product/<product_name>
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Run a valide executable product.
+    \item[Parameter product\_name:] An existing product's name.
+\end{description}
+
+
+\subsection{Run all openable products}
+
+\begin{lstlisting}[language=bash]
+> make run/all
+\end{lstlisting}
+
+\begin{description}
+    \item[Action:] Run all executable products.
+\end{description}
+

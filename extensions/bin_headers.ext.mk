@@ -4,6 +4,14 @@ ifeq ($(extension_entry),/config/pre)
 $(call mkrepo_load_param,cxxheader,g++ -x c++-header)
 
 #
+# @infos: create a product's target
+#
+# @caution: do not use it as is, it is automatically called in product_create
+#
+BINHEADERS_create_target = \
+    $(BUILD_PRODUCT_DIR)$(strip $1)
+
+#
 # @infos: return header dependencies
 #
 # @uses:
@@ -13,6 +21,9 @@ $(call mkrepo_load_param,cxxheader,g++ -x c++-header)
 #
 bin_header_deps = $(filter-out /* ../* : \,$(shell $(cxxheader) -E -MM -MT "" "$1"))
 
+#
+# @infos: Lets product_create be able to create a BINHEADERS product
+#
 MK_KNOWN_PRODUCT_TYPES += BINHEADERS
 
 STATS_EXTENSIONS += *.h *.hpp

@@ -138,6 +138,12 @@ Guillaume Abadie's makefile solution
     > make run/product/<product_name>
         Updates and runs a specific product
 
+    > make open/all
+        Updates and opens alls openable products
+
+    > make open/product/<product_name>
+        Updates and opens a specific product
+
     > make tests
     > make test/update
         Updates tests
