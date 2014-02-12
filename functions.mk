@@ -65,4 +65,4 @@ url_find_parent=$(call private_url_find_parent,$(abspath $1)/,$2)
 # @param <BASIS>: the path basis
 # @param <ABS_PATH>: the absolute path
 #
-url_relative=$(shell (echo "import os"; echo "print os.path.relpath('$2', '$1') + '/'" ) | python)
+url_relative=$(shell (echo "import os"; echo "print os.path.relpath('$2', '$1')" ) | python)
