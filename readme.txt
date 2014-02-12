@@ -154,6 +154,9 @@ Guillaume Abadie's makefile solution
     > make test/product/<product_name>
         Forces test execution for a specific product
 
+    > hook/precommit
+        Executes pre-commit hook
+
     > make param/set
         Saves modified repository parameters
 
