@@ -11,6 +11,8 @@ time_get = $(shell (echo "import time" ; echo "print int(round(time.time() * 100
 
 COMPILE_START_TIME := $(call time_get)
 
+MK_SPREADING_PARAMETERS += COMPILE_START_TIME=$(COMPILE_START_TIME)
+
 #
 # @infos: get the command printing elapsed time
 #

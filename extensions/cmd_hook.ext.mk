@@ -40,7 +40,7 @@ HOOK_PRECOMMIT_PARAMS ?= build/update test/update
 hook/precommit:
 	$(CMD_IDLE) ; $(foreach CONFIG_NAME,$(HOOK_PRECOMMIT_CONFIGS), \
 		echo \# configuration: $(strip $(CONFIG_NAME)) ; \
-		make -C $(PROJECT_DIR) config=$(strip $(CONFIG_NAME)) $(HOOK_PRECOMMIT_PARAMS) ; \
+		make -C $(PROJECT_DIR) $(MK_SPREADING_PARAMETERS) config=$(strip $(CONFIG_NAME)) $(HOOK_PRECOMMIT_PARAMS) ; \
 	)
 
 endif
