@@ -47,7 +47,7 @@ _TEST_LOG_TARGETS += $(_TEST_SCRIPT_LOG_TARGETS)
 $(_TEST_SCRIPT_LOG_TARGETS): %: $$(MK_DEPENDENCIES)
 	$(CMD_MKDIR_ALL) $(dir $@)
 	$(call history_colored_rule,testing script,$(TEST_SCRIPT_PATH),GREEN)
-	$(CMD_PREFIX)$(call run_get_cmd,$(TEST_SCRIPT_ENV)) $(strip $(TEST_SCRIPT_PATH)) $(TESTFLAGS) > $@ ; \
+	$(CMD_PREFIX)$(call run_script_cmd,$(TEST_SCRIPT_PATH), $(TEST_SCRIPT_ENV)) $(TESTFLAGS) > $@ ; \
 		RETURN=$$? ; \
         if [ $$RETURN -ne 0 ]; then \
             echo "$(call color_error)<$<> has returned $$RETURN$(call color_reset)"; \
