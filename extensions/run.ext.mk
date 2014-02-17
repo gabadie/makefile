@@ -32,5 +32,9 @@ run_get_cmd = \
 		) \
 	)
 
+#
+# @infos: defines the shell environment
+#
+$(call run_set_cmd,sh,sh)
 
 endif
