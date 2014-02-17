@@ -12,7 +12,7 @@ ifeq ($(extension_entry),/config/pre)
 #	$(call run_set_cmd,python,python2.7)
 #
 run_set_cmd = \
-	$(eval RUN_CMD_$(strip $1) = $2)
+	$(eval _RUN_CMD_$(strip $1) = $2)
 
 #
 # @infos: get the standart run command
@@ -26,8 +26,8 @@ run_set_cmd = \
 #
 run_get_cmd = \
 	$(if $(strip $1), \
-		$(if $(RUN_CMD_$(strip $1)), \
-			$(RUN_CMD_$(strip $1)), \
+		$(if $(_RUN_CMD_$(strip $1)), \
+			$(_RUN_CMD_$(strip $1)), \
 			$(error run environment "$(strip $1)" doesn't exist) \
 		) \
 	)
