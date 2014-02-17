@@ -12,12 +12,12 @@ endif
 ifeq ($(extension_entry),/config/post)
 
 .PHONY: tests test/update
-tests test/update: $$(TEST_LOG_TARGETS)
+tests test/update: $$(_TEST_LOG_TARGETS)
 	$(CMD_IDLE)
 
 .PHONY: test/clean
 test/clean:
-	$(CMD_RM) -rf $(TEST_LOG_TARGETS)
+	$(CMD_RM) -rf $(_TEST_LOG_TARGETS)
 
 .PHONY: test/full
 test/full: test/clean test/update

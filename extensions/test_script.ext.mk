@@ -37,14 +37,12 @@ test_script = $(call test_script_log_path,$1) \
 test_scripts = \
 	$(foreach TEST_SCRIPT,$1,$(call test_script,$(TEST_SCRIPT),$2))
 
-_TEST_SCRIPT_LOG_TARGETS =
-
 
 endif
 
 ifeq ($(extension_entry),/config/post)
 
-TEST_LOG_TARGETS += $(_TEST_SCRIPT_LOG_TARGETS)
+_TEST_LOG_TARGETS += $(_TEST_SCRIPT_LOG_TARGETS)
 
 $(_TEST_SCRIPT_LOG_TARGETS): %: $$(MK_DEPENDENCIES)
 	$(CMD_MKDIR_ALL) $(dir $@)
