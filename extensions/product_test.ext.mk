@@ -75,11 +75,13 @@ $(TEST_LOGS):
         if [ $$FAILED_TEST_COUNT -gt 0 ]; then \
             FAILED_TEST=$$(echo "$$FAILED_TEST" | cut -d " " -f 2-); \
             echo "$(call color_error)$$FAILED_TEST$(call color_reset)"; \
+            rm -rf $@ ; \
             echo ; \
             exit 1; \
         fi; \
         if [ $$RETURN -ne 0 ]; then \
             echo "$(call color_error)<$<> has returned $$RETURN$(call color_reset)"; \
+            rm -rf $@ ; \
             echo ; \
             exit 1; \
         fi;
