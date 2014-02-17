@@ -86,24 +86,16 @@ $(TEST_LOGS):
             exit 1; \
         fi;
 
-.PHONY: $(PLUMBING_PREFIX)removes_log
-$(PLUMBING_PREFIX)removes_log:
-	$(CMD_RM) -rf $(LOG_TO_REMOVE)
-
 .PHONY: tests test/update
 tests test/update: $(TEST_LOGS)
 	$(CMD_IDLE)
 
-.PHONY: $(addprefix test/product/,$(TEST_PRODUCTS))
-$(foreach TEST_PRODUCT,$(TEST_PRODUCTS), \
-    $(eval test/product/$(TEST_PRODUCT): $(call test_log,$(TEST_PRODUCT))) \
-    $(eval test/product/$(TEST_PRODUCT): LOG_TO_REMOVE = $(call test_log,$(TEST_PRODUCT))) \
-)
-$(addprefix test/product/,$(TEST_PRODUCTS)): $(PLUMBING_PREFIX)removes_log
-	$(CMD_IDLE)
+.PHONY: test/clean
+test/clean:
+	$(CMD_RM) -rf $(TEST_LOGS)
 
 .PHONY: test/full
-test/full: $(addprefix test/product/,$(TEST_PRODUCTS))
+test/full: test/clean test/update
 	$(CMD_IDLE)
 
 endif

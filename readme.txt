@@ -148,11 +148,11 @@ Guillaume Abadie's makefile solution
     > make test/update
         Updates tests
 
+    > make test/clean
+        Cleans tests' logs
+
     > make test/full
         Forces all tests
-
-    > make test/product/<product_name>
-        Forces test execution for a specific product
 
     > hook/precommit
         Executes pre-commit hook
