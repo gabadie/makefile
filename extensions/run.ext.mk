@@ -95,5 +95,11 @@ run_script_cmd = \
 $(call run_set_cmd,shell,sh)
 $(call run_set_ext,shell,.sh)
 
+#
+# @infos: defines the python environment
+#
+$(call run_set_cmd,python,python)
+$(call run_set_ext,python,.py)
+
 
 endif
