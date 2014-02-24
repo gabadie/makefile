@@ -14,6 +14,11 @@ BINLIBSTATIC_create_target = \
 #
 MK_KNOWN_PRODUCT_TYPES += BINLIBSTATIC
 
+#
+# @infos: by default, it is equal to rv
+#
+ARFLAGS:=
+
 endif
 
 ifeq ($(extension_entry),/config/post)
@@ -25,7 +30,7 @@ $(BINLIBSTATIC_TARGETS): %: $$(LDDEPS)
 	$(call history_rule,building static library,$@)
 	$(CMD_MKDIR_ALL) $(dir $@)
 	$(CMD_RM) -f $@
-	$(BINLIBSTATIC_CMD) $@ $(LDFLAGS)
+	$(BINLIBSTATIC_CMD) $@ $(ARFLAGS)
 
 endif
 
