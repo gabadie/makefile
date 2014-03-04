@@ -7,11 +7,13 @@ ifeq ($(extension_entry),/config/pre)
 # @uses:
 #   $(call time_get)
 #
-time_get = $(shell (echo "import time" ; echo "print int(round(time.time() * 1000))") | python)
+time_get = $(shell python -c "import time ; print int(round(time.time() * 1000))")
 
+ifeq ($(COMPILE_START_TIME),)
 COMPILE_START_TIME := $(call time_get)
+endif
 
-MK_SPREADING_PARAMETERS += COMPILE_START_TIME=$(COMPILE_START_TIME)
+export COMPILE_START_TIME
 
 #
 # @infos: get the command printing elapsed time
@@ -30,11 +32,8 @@ time_print_elapsed_cmd = ( \
 # @uses:
 #   $(call time_print_elapsed_cmd, $(TIMESTAMP_FROM))
 #
-time_print_elapsed_since_cmd = ( \
-		echo "import time" ; \
-		echo "delta = int(round(time.time() * 1000))-($1)" ; \
-		echo "print '{:02}:{:02}.{:03}'.format(delta/60000, (delta/1000) % 60, delta % 1000)" \
-	) | python
+time_print_elapsed_since_cmd = \
+		python -c "import time ; delta = int(round(time.time() * 1000))-($1) ; print '{:02}:{:02}.{:03}'.format(delta/60000, (delta/1000) % 60, delta % 1000)"
 
 #
 # @infos: gets the formated elapsed time

@@ -1,14 +1,6 @@
 
 ifeq ($(extension_entry),/config/pre)
 
-time_s = $(shell date +\(%j\*24\*60\*60+%H\*60\*60+%M\*60+%S\))
-
-COMPILE_START_TIME := $(call time_s)
-
-time_elapsed = $(shell printf "%.3d:%.2d" "$(shell echo "($2 - $1)/60" | bc)" "$(shell echo "($2 - $1)%60" | bc)")
-
-time_since = $(call time_elapsed,$(COMPILE_START_TIME),$(call time_s))
-
 #
 # @infos: prints history for a rule
 #
@@ -29,7 +21,6 @@ history_rule = $(call history_colored_rule,$1,$2,$(if $(SELF_PRODUCT_PUBLIC),,$(
 # @example:
 #   $(call history_colored_rule,building C++,$<,BLUE)
 #
-history_colored_rule = $(shell echo "\# $(color_time)$(call time_since)$(color_reset)" $(message_indent) "$(call color_text,$3)$1" "<$(notdir $2)>$(color_reset)")
+history_colored_rule = @echo "\# $(color_time)`$(call time_print_elapsed_since_cmd,$(COMPILE_START_TIME))`$(color_reset)" $(message_indent) "$(call color_text,$3)$1" "<$(notdir $2)>$(color_reset)" ;
 
 endif
-
