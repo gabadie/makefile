@@ -34,7 +34,7 @@ endif
 ifeq ($(extension_entry),/linear)
 
 _HOOK_PRECOMMIT_CONFIGS ?= default
-_HOOK_PRECOMMIT_PARAMS ?= build/update test/full
+_HOOK_PRECOMMIT_PARAMS ?= test/full
 
 .PHONY: hook/precommit
 hook/precommit:
