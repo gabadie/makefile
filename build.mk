@@ -103,12 +103,26 @@ extension_entry :=/config/post
 include $(GLOBAL_EXTENSION_LIST)
 
 
+#------------------------------------------------------------------------------- PARALLEL EXTENSIONS
+
+ifeq ($(PROJECT_PARALLEL),true)
+
+extension_entry :=/parallel
+include $(GLOBAL_EXTENSION_LIST)
+
+endif
+
+
 #------------------------------------------------------------------------------- NOT PARALLEL EXTENSIONS
+
+ifneq ($(PROJECT_PARALLEL),true)
 
 .NOTPARALLEL:
 
 extension_entry :=/linear
 include $(GLOBAL_EXTENSION_LIST)
+
+endif
 
 
 #------------------------------------------------------------------------------- EXPLICIT mk END
