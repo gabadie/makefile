@@ -5,7 +5,7 @@ BUILD_DEPS_DIR ?= $(BUILD_DIR)dependencies/
 
 endif
 
-ifeq ($(extension_entry),/config/post)
+ifneq ($(filter /linear /parallel,$(extension_entry)),)
 
 DEPENDENCY_FILES := $(abspath $(call rwildcard,$(BUILD_DEPS_DIR),*.d))
 
