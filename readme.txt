@@ -154,6 +154,7 @@ Guillaume Abadie's makefile solution
     > make test/full
         Forces all tests
 
+    > hook
     > hook/precommit
         Executes pre-commit hook
 

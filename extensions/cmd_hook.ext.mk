@@ -36,11 +36,21 @@ ifeq ($(extension_entry),/linear)
 _HOOK_PRECOMMIT_CONFIGS ?= default
 _HOOK_PRECOMMIT_PARAMS ?= test/full
 
+#
+# Command hook/precommit
+#
 .PHONY: hook/precommit
 hook/precommit:
 	$(CMD_IDLE) ; $(foreach CONFIG_NAME,$(_HOOK_PRECOMMIT_CONFIGS), \
 		echo \# configuration: $(strip $(CONFIG_NAME)) ; \
 		make -C $(PROJECT_DIR) $(MK_SPREADING_PARAMETERS) config=$(strip $(CONFIG_NAME)) $(_HOOK_PRECOMMIT_PARAMS) ; \
 	)
+
+#
+# Command hook/precommit
+#
+.PHONY: hook
+hook: hook/precommit
+	$(CMD_IDLE)
 
 endif
