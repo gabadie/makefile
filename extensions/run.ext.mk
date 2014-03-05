@@ -114,5 +114,10 @@ $(call run_set_ext,shell,.sh)
 $(call run_set_cmd,python,python)
 $(call run_set_ext,python,.py)
 
+#
+# @infos: defines the py.test environment
+#
+$(call run_set_cmd,py.test,py.test --color yes -q)
+
 
 endif
