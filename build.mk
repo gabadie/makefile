@@ -75,8 +75,9 @@ $(call mkrepo_load_param,config,default)
 
 #------------------------------------------------------------------------------- COMMANDS
 
-BUILD_DIR ?= $(PROJECT_DIR)build-$(config)/
-BUILD_PRODUCT_DIR ?= $(BUILD_DIR)products/
+BUILD_DIR_PREFIX = $(PROJECT_DIR)build-
+BUILD_DIR = $(BUILD_DIR_PREFIX)$(config)/
+BUILD_PRODUCT_DIR = $(BUILD_DIR)products/
 BUILD_SURVIVORS += $(BUILD_PRODUCT_DIR)
 
 
