@@ -42,6 +42,22 @@ run_get_env_from_file = \
 	$(call run_get_env_from_ext,$(suffix $1))
 
 #
+# @infos: guesses the environement from the file or the givent env
+#
+# @uses:
+#	$(call run_guess_env,$(EXT),$(ENV))
+#
+# @examples:
+#	$(call run_guess_env,script.py,shell) (returns shell)
+#	$(call run_guess_env,script.py) (return python)
+#
+run_guess_env = \
+	$(if $(strip $2), \
+		$2, \
+		$(call run_get_env_from_file,$1)\
+	)
+
+#
 # @infos: set the standart run command
 #
 # @uses:
@@ -84,10 +100,7 @@ run_get_cmd = \
 #	$(call run_get_cmd,hello.py,python)
 #
 run_script_cmd = \
-	$(if $(strip $2), \
-		$(call run_get_cmd,$2), \
-		$(call run_get_cmd,$(call run_get_env_from_file,$1))\
-	) $(strip $1)
+	$(call run_get_cmd,$(call run_guess_env,$1,$2)) $(strip $1)
 
 #
 # @infos: defines the shell environment
