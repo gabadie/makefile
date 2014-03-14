@@ -8,9 +8,27 @@ include $(mk)
 else
 
 
-#------------------------------------------------------------------------------- GENERAL PURPOSE
+#------------------------------------------------------------------------------- MAKE SETUP
 
+#
+# We require the second expension extension
+#
 .SECONDEXPANSION:
+
+#
+# We don't want to have dirty messaging when calling recursive makefile
+#
+MAKEFLAGS += --no-print-directory
+
+#
+# If make version 4.00 or higher, then we activate the --output-sync=target
+#
+ifeq (4.00,$(firstword $(sort $(MAKE_VERSION) 4.00)))
+    MAKEFLAGS += --output-sync=target
+endif
+
+
+#------------------------------------------------------------------------------- GENERAL PURPOSE
 
 MK_THIS := $(lastword $(MAKEFILE_LIST))
 MK_DIR := $(dir $(MK_THIS))
