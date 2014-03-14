@@ -5,7 +5,7 @@ BUILD_DEPS_DIR ?= $(BUILD_DIR)dependencies/
 
 endif
 
-ifeq ($(extension_entry),/config/post)
+ifneq ($(filter /linear /parallel,$(extension_entry)),)
 
 DEPENDENCY_FILES := $(abspath $(call rwildcard,$(BUILD_DEPS_DIR),*.d))
 
@@ -16,9 +16,9 @@ DEPENDENCY_FILES := $(abspath $(call rwildcard,$(BUILD_DEPS_DIR),*.d))
 # from MAKEFILE_LIST used in MK_DEPENDENCIES to avoid circular dependencies. Elsewhere it causes a bug rebuilding the
 # whole project when two rules generating dependency files are built not excatly at the very same second.
 #
-$(eval MK_DEPENDENCIES_WITH_D_FILES := $(value MK_DEPENDENCIES))
+$(eval MK_MAKEFILE_LIST_WITH_D_FILES := $(value MK_MAKEFILE_LIST))
 
-MK_DEPENDENCIES = $(filter-out $(DEPENDENCY_FILES),$(abspath $(MK_DEPENDENCIES_WITH_D_FILES)))
+MK_MAKEFILE_LIST = $(filter-out $(DEPENDENCY_FILES),$(abspath $(MK_MAKEFILE_LIST_WITH_D_FILES)))
 
 
 endif

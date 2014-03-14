@@ -8,13 +8,33 @@ include $(mk)
 else
 
 
-#------------------------------------------------------------------------------- GENERAL PURPOSE
+#------------------------------------------------------------------------------- MAKE SETUP
 
+#
+# We require the second expension extension
+#
 .SECONDEXPANSION:
+
+#
+# We don't want to have dirty messaging when calling recursive makefile
+#
+MAKEFLAGS += --no-print-directory
+
+#
+# If make version 4.00 or higher, then we activate the --output-sync=target
+#
+ifeq (4.00,$(firstword $(sort $(MAKE_VERSION) 4.00)))
+    MAKEFLAGS += --output-sync=target
+endif
+
+
+#------------------------------------------------------------------------------- GENERAL PURPOSE
 
 MK_THIS := $(lastword $(MAKEFILE_LIST))
 MK_DIR := $(dir $(MK_THIS))
-MK_DEPENDENCIES = $(MAKEFILE_LIST)
+MK_MAKEFILE_LIST = $(MAKEFILE_LIST)
+MK_DEPENDENCIES = $(MK_MAKEFILE_LIST)
+MK_SPREADING_PARAMETERS =
 
 GENERAL_VERSION = January 2014
 
@@ -73,8 +93,9 @@ $(call mkrepo_load_param,config,default)
 
 #------------------------------------------------------------------------------- COMMANDS
 
-BUILD_DIR ?= $(PROJECT_DIR)build-$(config)/
-BUILD_PRODUCT_DIR ?= $(BUILD_DIR)products/
+BUILD_DIR_PREFIX = $(PROJECT_DIR)build-
+BUILD_DIR = $(BUILD_DIR_PREFIX)$(config)/
+BUILD_PRODUCT_DIR = $(BUILD_DIR)products/
 BUILD_SURVIVORS += $(BUILD_PRODUCT_DIR)
 
 
@@ -101,12 +122,26 @@ extension_entry :=/config/post
 include $(GLOBAL_EXTENSION_LIST)
 
 
+#------------------------------------------------------------------------------- PARALLEL EXTENSIONS
+
+ifeq ($(PROJECT_PARALLEL),true)
+
+extension_entry :=/parallel
+include $(GLOBAL_EXTENSION_LIST)
+
+endif
+
+
 #------------------------------------------------------------------------------- NOT PARALLEL EXTENSIONS
+
+ifneq ($(PROJECT_PARALLEL),true)
 
 .NOTPARALLEL:
 
 extension_entry :=/linear
 include $(GLOBAL_EXTENSION_LIST)
+
+endif
 
 
 #------------------------------------------------------------------------------- EXPLICIT mk END

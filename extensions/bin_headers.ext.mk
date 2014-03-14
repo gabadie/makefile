@@ -39,11 +39,11 @@ $(BINHEADERS_TARGETS): %: $$(MK_DEPENDENCIES)
 	$(call history_rule,headers directory,$@)
 	$(CMD_RM) -rf $@
 	$(CMD_MKDIR_ALL) $@/
-	$(CMD_CP) $(filter %.h %.hpp,$^) $@ ;\
-        if [ $$? -ne 0 ]; then \
-            rm -rf $@ ; \
-            exit 1; \
-        fi;
+	$(CMD_IDLE) ; $(foreach HEADER,$(CPFLAGS), \
+		$(eval BINHEADERS_DEST := $@/$(call url_relative,$(CPROOTDIR),$(abspath $(HEADER)))) \
+		mkdir -p $(dir $(BINHEADERS_DEST)) ; \
+		cp $(HEADER) $(BINHEADERS_DEST) ; \
+	)
 
 endif
 
