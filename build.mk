@@ -35,19 +35,16 @@ MK_DIR := $(dir $(MK_THIS))
 MK_MAKEFILE_LIST = $(MAKEFILE_LIST)
 MK_DEPENDENCIES = $(MK_MAKEFILE_LIST)
 MK_SPREADING_PARAMETERS =
+MK_SRC_DIR := $(MK_DIR)/src/
+MK_SRC_LIST := $(wildcard $(MK_SRC_DIR)*.ext.mk)
 
-GENERAL_VERSION = January 2014
+
+GENERAL_VERSION = April 2014
 
 
 #------------------------------------------------------------------------------- FUNCTIONS
 
 include $(MK_DIR)functions.mk
-
-
-#------------------------------------------------------------------------------- EXTENSIONS MANAGER
-
-GLOBAL_EXTENSION_DIR := $(dir $(lastword $(MAKEFILE_LIST)))extensions/
-GLOBAL_EXTENSION_LIST := $(wildcard $(GLOBAL_EXTENSION_DIR)/*.ext.mk)
 
 
 #------------------------------------------------------------------------------- GLOBAL VARS
@@ -102,7 +99,7 @@ BUILD_SURVIVORS += $(BUILD_PRODUCT_DIR)
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
 
 extension_entry :=/config/pre
-include $(GLOBAL_EXTENSION_LIST)
+include $(MK_SRC_LIST)
 
 
 #------------------------------------------------------------------------------- CONFIG
@@ -119,7 +116,7 @@ endif
 #------------------------------------------------------------------------------- POST-CONFIG EXTENSIONS
 
 extension_entry :=/config/post
-include $(GLOBAL_EXTENSION_LIST)
+include $(MK_SRC_LIST)
 
 
 #------------------------------------------------------------------------------- PARALLEL EXTENSIONS
@@ -127,7 +124,7 @@ include $(GLOBAL_EXTENSION_LIST)
 ifeq ($(PROJECT_PARALLEL),true)
 
 extension_entry :=/parallel
-include $(GLOBAL_EXTENSION_LIST)
+include $(MK_SRC_LIST)
 
 endif
 
@@ -139,7 +136,7 @@ ifneq ($(PROJECT_PARALLEL),true)
 .NOTPARALLEL:
 
 extension_entry :=/linear
-include $(GLOBAL_EXTENSION_LIST)
+include $(MK_SRC_LIST)
 
 endif
 
