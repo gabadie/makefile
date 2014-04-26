@@ -19,8 +19,5 @@ latex.ext.mk
 product.ext.mk
 python.ext.mk
 run.ext.mk
-test.ext.mk
-test_bin.ext.mk
-test_product.ext.mk
-test_script.ext.mk
+test/*.ext.mk
 travis.ext.mk
