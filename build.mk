@@ -1,2 +1,2 @@
 
-include $(dir $(lastword $(MAKEFILE_LIST)))/main.mk
+include $(dir $(lastword $(MAKEFILE_LIST)))src/main.mk

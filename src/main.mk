@@ -31,11 +31,11 @@ endif
 #------------------------------------------------------------------------------- GENERAL PURPOSE
 
 MK_THIS := $(lastword $(MAKEFILE_LIST))
-MK_DIR := $(dir $(MK_THIS))
+MK_DIR := $(dir $(MK_THIS))/../
 MK_MAKEFILE_LIST = $(MAKEFILE_LIST)
 MK_DEPENDENCIES = $(MK_MAKEFILE_LIST)
 MK_SPREADING_PARAMETERS =
-MK_SRC_DIR := $(MK_DIR)/src/
+MK_SRC_DIR := $(MK_DIR)src/
 MK_SRC_LIST := $(wildcard $(MK_SRC_DIR)*.ext.mk)
 
 
@@ -44,7 +44,7 @@ GENERAL_VERSION = April 2014
 
 #------------------------------------------------------------------------------- FUNCTIONS
 
-include $(MK_DIR)functions.mk
+include $(MK_SRC_DIR)functions.mk
 
 
 #------------------------------------------------------------------------------- GLOBAL VARS
@@ -83,7 +83,7 @@ PROJECT_DIR ?= ./
 
 #------------------------------------------------------------------------------- MK REPOSITORY
 
-include $(MK_DIR)repository.mk
+include $(MK_SRC_DIR)repository.mk
 
 $(call mkrepo_load_param,config,default)
 
