@@ -36,15 +36,13 @@ MK_MAKEFILE_LIST = $(MAKEFILE_LIST)
 MK_DEPENDENCIES = $(MK_MAKEFILE_LIST)
 MK_SPREADING_PARAMETERS =
 MK_SRC_DIR := $(MK_DIR)src/
-MK_SRC_LIST := $(wildcard $(MK_SRC_DIR)*.ext.mk)
-
 
 GENERAL_VERSION = April 2014
 
 
-#------------------------------------------------------------------------------- FUNCTIONS
+#------------------------------------------------------------------------------- CORE
 
-include $(MK_SRC_DIR)functions.mk
+include $(MK_SRC_DIR)core/functions.mk
 
 
 #------------------------------------------------------------------------------- GLOBAL VARS
@@ -83,7 +81,7 @@ PROJECT_DIR ?= ./
 
 #------------------------------------------------------------------------------- MK REPOSITORY
 
-include $(MK_SRC_DIR)repository.mk
+include $(MK_SRC_DIR)core/repository.mk
 
 $(call mkrepo_load_param,config,default)
 
@@ -97,6 +95,8 @@ BUILD_SURVIVORS += $(BUILD_PRODUCT_DIR)
 
 
 #------------------------------------------------------------------------------- PRE-CONFIG EXTENSIONS
+
+MK_SRC_LIST := $(call filelist,$(MK_SRC_DIR)ext.mk.flist)
 
 extension_entry :=/config/pre
 include $(MK_SRC_LIST)
