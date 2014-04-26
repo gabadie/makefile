@@ -6,6 +6,14 @@ SUB_MAKEFILES = $(dir $(wildcard */makefile))
 MAKECMDGOALS ?= _default_entry
 
 
+#------------------------------------------------------------------------------- MAKEFILE CONFIGURATION
+
+#
+# We don't want to have dirty messaging when calling recursive makefile
+#
+MAKEFLAGS += --no-print-directory
+
+
 #------------------------------------------------------------------------------- GENERIC RULE
 
 .PHONY: $(MAKECMDGOALS)
