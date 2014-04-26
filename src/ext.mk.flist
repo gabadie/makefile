@@ -1,10 +1,5 @@
 
-bin_exec.ext.mk
-bin_farincludes.ext.mk
-bin_headers.ext.mk
-bin_object.ext.mk
-bin_officiallibs.ext.mk
-bin_staticlib.ext.mk
+bin/*.ext.mk
 build_dir.ext.mk
 cmd_build.ext.mk
 cmd_candy.ext.mk
