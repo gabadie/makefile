@@ -1,7 +1,10 @@
 
 ifeq ($(extension_entry),/config/pre)
 
-$(call mkrepo_load_param,cxxheader,g++ -x c++-header)
+#
+# Sets g++ as default header compiler
+#
+override CXXHEADER=g++
 
 #
 # @infos: create a product's target
@@ -19,7 +22,7 @@ BINHEADERS_create_target = \
 #
 # @param <MY_HEADER>: path to the header file
 #
-bin_header_deps = $(filter-out /* ../* : \,$(shell $(cxxheader) -E -MM -MT "" "$1"))
+bin_header_deps = $(filter-out /* ../* : \,$(shell $(CXXHEADER) -x c++-header -E -MM -MT "" "$1"))
 
 #
 # @infos: Lets product_create be able to create a BINHEADERS product

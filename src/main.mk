@@ -79,14 +79,7 @@ _default_entry: $$(MK_DEFAULT_ENTRIES)
 PROJECT_DIR ?= ./
 
 
-#------------------------------------------------------------------------------- MK REPOSITORY
-
-include $(MK_SRC_DIR)core/repository.mk
-
-$(call mkrepo_load_param,config,default)
-
-
-#------------------------------------------------------------------------------- COMMANDS
+#------------------------------------------------------------------------------- BUILD DIRECTORY
 
 BUILD_DIR_PREFIX = $(PROJECT_DIR)build-
 BUILD_DIR = $(BUILD_DIR_PREFIX)$(config)/
@@ -103,6 +96,8 @@ include $(MK_SRC_LIST)
 
 
 #------------------------------------------------------------------------------- CONFIG
+
+config ?= default
 
 MK_CONFIG_PATH = $(PROJECT_DIR)candy_project.mk
 

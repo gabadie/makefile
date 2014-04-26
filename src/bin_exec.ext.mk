@@ -1,7 +1,10 @@
 
 ifeq ($(extension_entry),/config/pre)
 
-$(call mkrepo_load_param,ld,g++)
+#
+# Sets g++ as default linker
+#
+override LD=g++
 
 #
 # @infos: create a product's target
@@ -32,7 +35,7 @@ BINEXEC_TARGETS := $(foreach PROD,$(BINEXEC_PRODUCTS), $(call product_target,$(P
 $(BINEXEC_TARGETS): %: $$(LDDEPS)
 	$(call history_rule,linking executable,$@)
 	$(CMD_MKDIR_ALL) $(dir $@)
-	$(CMD_PREFIX)$(ld) -o $@ $(LDFLAGS)
+	$(CMD_PREFIX)$(LD) -o $@ $(LDFLAGS)
 
 endif
 
