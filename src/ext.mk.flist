@@ -18,13 +18,9 @@ cmd_run.ext.mk
 cmd_show.ext.mk
 cmd_stats.ext.mk
 cmd_trash.ext.mk
-colors.ext.mk
 dependencies.ext.mk
 external_project.ext.mk
-filelist.ext.mk
-history.ext.mk
 latex.ext.mk
-os_detection.ext.mk
 product.ext.mk
 python.ext.mk
 run.ext.mk
@@ -32,5 +28,4 @@ test.ext.mk
 test_bin.ext.mk
 test_product.ext.mk
 test_script.ext.mk
-time.ext.mk
 travis.ext.mk

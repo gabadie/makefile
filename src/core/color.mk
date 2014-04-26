@@ -1,6 +1,4 @@
 
-ifeq ($(extension_entry),/config/pre)
-
 COLOR_FG_DEFAULT=
 COLOR_FG_BLACK=30
 COLOR_FG_RED=31
@@ -72,6 +70,3 @@ color_time=$(call color_text,$(COLOR_TIME_FG))
 #   $(call color_private)
 #
 color_private=$(call color_text,$(COLOR_PRIVATE_FG))
-
-endif
-

@@ -1,6 +1,4 @@
 
-ifeq ($(extension_entry),/config/pre)
-
 # @infos: give the operating system name:
 #
 # @values:
@@ -14,6 +12,3 @@ ifeq ($(OS),Windows_NT)
 else
     OS_NAME :=$(shell uname -s)
 endif
-
-endif
-

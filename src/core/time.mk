@@ -1,6 +1,4 @@
 
-ifeq ($(extension_entry),/config/pre)
-
 #
 # @infos: get curent time
 #
@@ -50,6 +48,3 @@ time_elapsed = $(shell $(call time_print_elapsed_cmd,$1,$2))
 #   $(call time_since)
 #
 time_since = $(shell $(call time_print_elapsed_since_cmd,$(COMPILE_START_TIME)))
-
-endif
-
