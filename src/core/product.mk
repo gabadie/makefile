@@ -1,6 +1,4 @@
 
-ifeq ($(extension_entry),/config/pre)
-
 #
 # @infos: creates a product
 #
@@ -142,14 +140,3 @@ product_type_list = \
 
 
 PROJECT_PUBLIC_PRODUCTS =
-
-endif
-
-ifeq ($(extension_entry),/config/post)
-
-.PHONY: $(PLUMBING_PREFIX)list_products
-$(PLUMBING_PREFIX)list_products:
-	@$(foreach PUBLIC_PRODUCT,$(PROJECT_PUBLIC_PRODUCTS),echo "$(PUBLIC_PRODUCT)";)
-
-endif
-

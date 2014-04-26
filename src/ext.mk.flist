@@ -16,7 +16,6 @@ cmd_trash.ext.mk
 dependencies.ext.mk
 external_project.ext.mk
 latex.ext.mk
-product.ext.mk
 python.ext.mk
 run.ext.mk
 test/*.ext.mk
