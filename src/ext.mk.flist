@@ -1,18 +1,7 @@
 
 bin/*.ext.mk
 build_dir.ext.mk
-cmd_build.ext.mk
-cmd_candy.ext.mk
-cmd_clean.ext.mk
-cmd_clobber.ext.mk
-cmd_help.ext.mk
-cmd_hook.ext.mk
-cmd_open.ext.mk
-cmd_product.ext.mk
-cmd_run.ext.mk
-cmd_show.ext.mk
-cmd_stats.ext.mk
-cmd_trash.ext.mk
+cmd/*.ext.mk
 dependencies.ext.mk
 external_project.ext.mk
 latex.ext.mk
