@@ -27,11 +27,12 @@ bin_object_files = $(foreach FILE,$1,$(call bin_object_file,$(FILE)))
 
 $(call mkrepo_load_param,cc,gcc -c -x c)
 $(call mkrepo_load_param,cxx,g++ -c -x c++)
+$(call mkrepo_load_param,as,gcc -c -x assembler)
 
 #
 # Enables 'make stats' to stats on C/C++ files
 #
-STATS_EXTENSIONS += *.c *.cpp
+STATS_EXTENSIONS += *.c *.cpp  *.s
 
 endif
 
@@ -47,5 +48,9 @@ $(BUILD_OBJ_DIR)%.cpp.o: $$(MK_DEPENDENCIES) $$(CXXDEPS)
 	$(CMD_MKDIR_ALL) $(BUILD_OBJ_DIR) $(BUILD_DEPS_DIR)
 	$(CMD_PREFIX)$(cxx) -o $@ -MMD -MF $(patsubst %.o,%.d, $(BUILD_DEPS_DIR)$(notdir $@)) $(CXXFLAGS) $(_BIN_SRC_FILE)
 
-endif
+$(BUILD_OBJ_DIR)%.s.o: $$(call rwildcard,./,*%.s) $$(MK_DEPENDENCIES) $$(ASDEPS)
+	$(call history_rule,compiling asm file,$<)
+	$(CMD_MKDIR_ALL) $(BUILD_OBJ_DIR)
+	$(CMD_PREFIX)$(as) -o $@ $< $(ASFLAGS)
 
+endif
