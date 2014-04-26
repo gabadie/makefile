@@ -42,7 +42,7 @@ GENERAL_VERSION = April 2014
 
 #------------------------------------------------------------------------------- CORE
 
-include $(MK_SRC_DIR)core/functions.mk
+include $(MK_SRC_DIR)core/*.mk
 
 
 #------------------------------------------------------------------------------- GLOBAL VARS
@@ -132,6 +132,18 @@ ifneq ($(PROJECT_PARALLEL),true)
 
 extension_entry :=/linear
 include $(MK_SRC_LIST)
+
+#
+# @infos: the number of available cores
+#
+_PARALLEL_CORES := $(shell python -c "import multiprocessing ; print multiprocessing.cpu_count()")
+
+#
+# @infos: defines parrallel rules
+#
+$(_PARALLEL_TARGETS): %:
+	@$(MAKE) -f $(firstword $(MAKEFILE_LIST)) --jobs $(_PARALLEL_CORES) PROJECT_PARALLEL=true $(MK_SPREADING_PARAMETERS) $@
+
 
 endif
 

@@ -25,7 +25,6 @@ filelist.ext.mk
 history.ext.mk
 latex.ext.mk
 os_detection.ext.mk
-parallel.ext.mk
 product.ext.mk
 python.ext.mk
 run.ext.mk
