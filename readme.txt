@@ -167,3 +167,5 @@ Guillaume Abadie's makefile solution
     > make param/repo
         Shows the makefile repository path
 
+    > make travis/setup
+        Creates Travis CI (travis-ci.org) configuration file (.travis.yml)
