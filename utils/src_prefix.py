@@ -129,7 +129,7 @@ def main(args):
                 if f in files:
                     continue
 
-                if not os.path.isfile(d):
+                if not os.path.isfile(f):
                     continue
 
                 files.append(f)
