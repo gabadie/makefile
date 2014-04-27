@@ -150,7 +150,7 @@ def main(args):
             file_content.extend(policy.prunes_prefix(file_original_content))
 
         with open(file_path, 'w') as f:
-            f.write('\n'.join(file_content))
+            f.write('\n'.join([l.rstrip() for l in file_content]))
             f.write('\n')
 
     return 0
