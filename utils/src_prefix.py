@@ -63,12 +63,12 @@ class CCommentPolicy(CommentPolicy):
         return prefix_comment
 
 
-class PythonCommentPolicy(CommentPolicy):
+class HashCommentPolicy(CommentPolicy):
     """ Python language comment policy
     """
 
-    def __init__(self):
-        CommentPolicy.__init__(self, 'python')
+    def __init__(self, name):
+        CommentPolicy.__init__(self, name)
 
     def prunes_prefix(self, file_content):
         while file_content[0].startswith('#'):
@@ -81,8 +81,17 @@ class PythonCommentPolicy(CommentPolicy):
 
     def prefix_comment(self, prefix):
         prefix_comment = list()
-        prefix_comment.append('#!/usr/bin/env python')
-        prefix_comment.append('# coding=utf8')
+
+        if self.name == 'python':
+            prefix_comment.append('#!/usr/bin/env python')
+            prefix_comment.append('# coding=utf8')
+
+        elif self.name == 'shell':
+            prefix_comment.append('#!/bin/sh')
+
+        elif self.name not in ['flist']:
+            assert False
+
         prefix_comment.append('#')
 
         for line in prefix:
@@ -96,7 +105,9 @@ comment_policies = dict()
 comment_policies['c'] = CCommentPolicy('c')
 comment_policies['c++'] = CCommentPolicy('c++')
 comment_policies['c/c++'] = CCommentPolicy('c/c++')
-comment_policies['python'] = PythonCommentPolicy()
+comment_policies['flist'] = HashCommentPolicy('flist')
+comment_policies['python'] = HashCommentPolicy('python')
+comment_policies['shell'] = HashCommentPolicy('shell')
 
 
 # ------------------------------------------------------------------------------ main entry point
