@@ -2,6 +2,8 @@
 # coding=utf8
 
 import argparse
+import fnmatch
+import glob
 import os
 import sys
 
@@ -109,9 +111,35 @@ def main(args):
 
         return 0
 
-    for file_path in args.files:
+    files = list()
+
+    for file_regex in args.files:
+        if args.recursive:
+            for root, dirnames, filenames in os.walk('./'):
+                for filename in fnmatch.filter(filenames, file_regex):
+                    f = '{}/{}'.format(root, filename)
+
+                    if f in files:
+                        continue
+
+                    files.append(f)
+
+        else:
+            for f in glob.glob(file_regex):
+                if f in files:
+                    continue
+
+                if not os.path.isfile(d):
+                    continue
+
+                files.append(f)
+
+    for file_path in files:
         if args.verbose:
             print '{}'.format(file_path)
+
+        if args.no_processing:
+            continue
 
         file_content = list()
         file_content.extend(prefix)
@@ -129,23 +157,34 @@ def main(args):
 
 
 if __name__ == '__main__':
+    languages = comment_policies.keys()
+    languages.sort()
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-v", "--verbose",
-        help="increase output verbosity",
+        help="list al processed files",
+        action="store_true"
+    )
+    parser.add_argument("-r", "--recursive",
+        help="recursively search subdirectories listed",
+        action="store_true"
+    )
+    parser.add_argument("-n", "--no-processing",
+        help="do not process files",
         action="store_true"
     )
     parser.add_argument("language",
         help="the source code language",
-        choices=comment_policies.keys(),
+        choices=languages,
         type=str
     )
     parser.add_argument("prefix",
-        metavar='prefix_path',
+        metavar='prefix',
         help="the prefix to append to all files",
         type=file
     )
     parser.add_argument('files',
-        metavar='file_path',
+        metavar='file',
         help="files to append the prefix to",
         type=str,
         nargs='*'
