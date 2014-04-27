@@ -89,7 +89,7 @@ class HashCommentPolicy(CommentPolicy):
         elif self.name == 'shell':
             prefix_comment.append('#!/bin/sh')
 
-        elif self.name not in ['flist']:
+        elif self.name not in ['flist', 'makefile']:
             assert False
 
         prefix_comment.append('#')
@@ -106,6 +106,7 @@ comment_policies['c'] = CCommentPolicy('c')
 comment_policies['c++'] = CCommentPolicy('c++')
 comment_policies['c/c++'] = CCommentPolicy('c/c++')
 comment_policies['flist'] = HashCommentPolicy('flist')
+comment_policies['makefile'] = HashCommentPolicy('makefile')
 comment_policies['python'] = HashCommentPolicy('python')
 comment_policies['shell'] = HashCommentPolicy('shell')
 
