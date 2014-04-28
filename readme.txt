@@ -65,6 +65,7 @@ Guillaume Abadie's makefile solution
     > make open/product/<product_name>
         Updates and opens a specific product
 
+    > make test
     > make tests
     > make test/update
         Updates tests

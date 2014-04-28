@@ -35,9 +35,12 @@ test/full: test/clean test/update
 	$(CMD_IDLE)
 
 #
-# Shortcut test/update as tests
+# Shortcut test/update as test or tests
 #
-.PHONY: tests
+.PHONY: test tests
+test: test/update
+	$(CMD_IDLE)
+
 tests: test/update
 	$(CMD_IDLE)
 
